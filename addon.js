@@ -12,7 +12,9 @@ const places = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Inject Accessibility Stepper & Font Selector
+  const pageLang = document.documentElement.lang || "mr";
+
+  // 1. Inject Accessibility Stepper & Multilingual Font Selector
   const controlGrid = document.querySelector(".control-grid");
   if (controlGrid) {
     controlGrid.innerHTML = `
@@ -25,17 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="tool-pill">
         <label for="font-select">Aa:</label>
         <select id="font-select" onchange="changeFont(this.value)">
-          <option value="'Mukta', system-ui, sans-serif">मुक्ता (Mukta)</option>
-          <option value="'Noto Sans Devanagari', system-ui, sans-serif">देवनागरी (Noto)</option>
-          <option value="'Poppins', sans-serif">Poppins</option>
-          <option value="'Merriweather', serif">Merriweather</option>
+          <option value="'Mukta', system-ui, sans-serif">मुक्ता (Mukta Devanagari)</option>
+          <option value="'Noto Sans Gurmukhi', system-ui, sans-serif">ਗੁਰਮੁਖੀ (Noto Gurmukhi)</option>
+          <option value="'Noto Sans Devanagari', system-ui, sans-serif">देवनागरी (Noto Sans)</option>
+          <option value="'Poppins', sans-serif">Poppins (Modern Clean)</option>
+          <option value="'Merriweather', serif">Merriweather (Classic Serif)</option>
           <option value="system-ui, -apple-system, sans-serif">System Default</option>
         </select>
       </div>
     `;
   }
 
-  // 2. Inject Walking Tour & KML Export
+  // 2. Localized Labels for Tour Buttons
   const tourActions = document.querySelector(".tour-actions");
   if (tourActions) {
     const walkingUrl = "https://www.google.com/maps/dir/?api=1"
@@ -52,13 +55,25 @@ document.addEventListener("DOMContentLoaded", () => {
         ].map(encodeURIComponent).join("%7C")
       + "&travelmode=walking";
 
+    const tourLabel = pageLang === "mr" ? "🚶 पायी दर्शन मार्ग (Maps)" :
+                      pageLang === "hi" ? "🚶 पैदल दर्शन मार्ग (Maps)" :
+                      pageLang === "pa" ? "🚶 ਪੈਦਲ ਦਰਸ਼ਨ ਮਾਰਗ (Maps)" : "🚶 Walking Tour (Maps)";
+
+    const kmlLabel = pageLang === "mr" ? "🗺️ KML डाउनलोड" :
+                     pageLang === "hi" ? "🗺️ KML डाउनलोड" :
+                     pageLang === "pa" ? "🗺️ KML ਡਾਊਨਲੋਡ" : "🗺️ Download KML";
+
     tourActions.innerHTML = `
-      <a href="${walkingUrl}" target="_blank" rel="noopener" class="tour-btn walking">🚶 Walking Tour (Maps)</a>
-      <button onclick="downloadKML()" class="tour-btn">🗺️ Download KML</button>
+      <a href="${walkingUrl}" target="_blank" rel="noopener" class="tour-btn walking">${tourLabel}</a>
+      <button onclick="downloadKML()" class="tour-btn">${kmlLabel}</button>
     `;
   }
 
-  // 3. Attach Maps Link to Each Card
+  // 3. Localized Google Maps Link on Every Card
+  const mapLinkText = pageLang === "mr" ? "📍 गुगल मॅप्सवर पहा" :
+                      pageLang === "hi" ? "📍 गूगल मैप्स पर देखें" :
+                      pageLang === "pa" ? "📍 ਗੂਗਲ ਮੈਪਸ 'ਤੇ ਦੇਖੋ" : "📍 Open in Google Maps";
+
   document.querySelectorAll(".card-body").forEach((body, i) => {
     if (places[i] && !body.querySelector(".map-link")) {
       const a = document.createElement("a");
@@ -66,24 +81,28 @@ document.addEventListener("DOMContentLoaded", () => {
       a.target = "_blank";
       a.rel = "noopener";
       a.className = "map-link";
-      a.innerHTML = "📍 Open in Google Maps";
+      a.innerHTML = mapLinkText;
       body.appendChild(a);
     }
   });
 
-  // 4. Mount Lightbox Modal
+  // 4. Mount Touch Zoom Lightbox
   setupLightbox();
 
-  // 5. Restore User Preferences
+  // 5. Restore Accessibility Scaling
   const savedScale = localStorage.getItem("pune_ganpati_scale");
   if (savedScale) setFontScale(parseFloat(savedScale));
 
+  // 6. Language-Aware Font Default
   const savedFont = localStorage.getItem("pune_ganpati_font");
-  if (savedFont) {
-    document.body.style.fontFamily = savedFont;
-    const sel = document.getElementById("font-select");
-    if (sel) sel.value = savedFont;
-  }
+  const defaultFont = pageLang === "pa" ? "'Noto Sans Gurmukhi', system-ui, sans-serif" :
+                      (pageLang === "mr" || pageLang === "hi") ? "'Mukta', system-ui, sans-serif" :
+                      "'Poppins', sans-serif";
+
+  const activeFont = savedFont || defaultFont;
+  document.body.style.fontFamily = activeFont;
+  const sel = document.getElementById("font-select");
+  if (sel) sel.value = activeFont;
 });
 
 function changeFont(fontFamily) {
@@ -100,6 +119,7 @@ function setFontScale(scale, btn) {
 }
 
 function downloadKML() {
+  const pageLang = document.documentElement.lang || "mr";
   let placemarks = "";
   document.querySelectorAll(".card").forEach((card, i) => {
     const title = card.querySelector("h2") ? card.querySelector("h2").innerText : places[i].name;
@@ -115,7 +135,7 @@ function downloadKML() {
   const blob = new Blob([kml], { type: "application/vnd.google-earth.kml+xml" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "pune_ganpati_tour.kml";
+  a.download = `pune_ganpati_tour_${pageLang}.kml`;
   a.click();
 }
 
