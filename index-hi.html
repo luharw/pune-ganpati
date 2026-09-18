@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>पुणे गणेशोत्सव हेरिटेज गाइड | Pune Ganpatis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Mukta:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #7a0c23; --gold: #c59616; --gold-bg: #fdf8ec;
+    --bg: #f6f4ef; --card: #ffffff; --text: #201c18; --muted: #5c544d;
+    --border: #e2dacd; --font-scale: 1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Mukta', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 12px; padding-bottom: 40px; line-height: 1.55; }
+  
+  .lang-bar { text-align: center; font-size: .92rem; font-weight: 700; padding: 6px 0 10px; color: var(--muted); }
+  .lang-bar span.active { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+  .lang-bar a { color: #555; text-decoration: none; margin: 0 8px; }
+
+  header { background: linear-gradient(135deg, var(--primary), #460512); color: #fff; padding: 16px 14px; border-radius: 12px; text-align: center; border-bottom: 3px solid var(--gold); margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
+  header h1 { font-size: calc(1.3rem * var(--font-scale)); color: #ffdf88; margin-bottom: 3px; font-weight: 700; }
+  header p { font-size: calc(0.82rem * var(--font-scale)); color: #f3e8db; }
+  
+  .control-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .tool-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.04); }
+  .tool-pill label { font-size: .76rem; font-weight: 700; color: var(--primary); }
+  .tool-pill select { border: none; background: transparent; font-size: .78rem; font-weight: 600; color: var(--text); outline: none; cursor: pointer; }
+  
+  .size-stepper { display: inline-flex; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; background: var(--card); }
+  .size-btn { border: none; background: transparent; padding: 5px 11px; font-size: .78rem; font-weight: 700; color: var(--primary); cursor: pointer; border-right: 1px solid var(--border); }
+  .size-btn:last-child { border-right: none; }
+  .size-btn.active { background: var(--primary); color: #fff; }
+
+  .tour-actions { display: flex; gap: 8px; width: 100%; max-width: 440px; margin: 0 auto 14px; }
+  .tour-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 8px; font-size: calc(.78rem * var(--font-scale)); font-weight: 700; color: var(--primary); text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; }
+  .tour-btn.walking { background: #edf7ee; border-color: #c2e6c4; color: #1b5e20; }
+
+  .card { background: var(--card); border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 7px rgba(0,0,0,0.06); border: 1px solid var(--border); overflow: hidden; }
+  .img-box { position: relative; height: 310px; background: #181513; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
+  .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .zoom-hint { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.72); color: #fff; font-size: .72rem; padding: 3px 9px; border-radius: 12px; pointer-events: none; }
+  .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #1c1200; font-size: .75rem; font-weight: 700; padding: 4px 10px; border-radius: 14px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.25); }
+  .badge.legend { background: #fff; color: #0d47a1; }
+  
+  .card-body { padding: 14px; }
+  h2 { font-size: calc(1.18rem * var(--font-scale)); color: var(--primary); margin-bottom: 2px; font-weight: 700; }
+  .subhead { font-size: calc(.82rem * var(--font-scale)); font-weight: 600; color: var(--muted); margin-bottom: 10px; }
+  .sec { margin: 8px 0; font-size: calc(.85rem * var(--font-scale)); line-height: 1.55; }
+  .sec strong { color: var(--primary); }
+  .trivia { background: #f0f7ff; border-left: 3.5px solid #1976d2; padding: 8px 11px; font-size: calc(.82rem * var(--font-scale)); border-radius: 0 6px 6px 0; margin-top: 8px; color: #0d47a1; line-height: 1.5; }
+  .cue { background: var(--gold-bg); border-left: 3.5px solid var(--gold); padding: 8px 11px; font-size: calc(.82rem * var(--font-scale)); border-radius: 0 6px 6px 0; margin-top: 8px; color: #523d06; line-height: 1.5; }
+  .map-link { display: inline-flex; align-items: center; gap: 6px; background: #fdfbf7; color: #1b5e20; border: 1px solid #c2dec9; border-radius: 8px; padding: 7px 12px; font-size: calc(.8rem * var(--font-scale)); font-weight: 700; text-decoration: none; margin-top: 10px; }
+
+  #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; touch-action: none; overflow: hidden; }
+  #modal-bar { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); z-index: 10001; }
+  #modal-title { color: #ffdf88; font-size: .85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
+  .ctrl-btns { display: flex; gap: 6px; }
+  .ctrl-btn { background: #2c2c2c; color: #fff; border: 1px solid #555; border-radius: 18px; padding: 6px 12px; font-size: .8rem; font-weight: 700; cursor: pointer; }
+  .ctrl-btn.close-btn { background: #a00; border-color: #c00; }
+  #viewport { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  #modal-img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: center center; transition: transform 0.12s ease-out; user-select: none; }
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <a href="index.html">मराठी</a> | <a href="index-en.html">English</a> | <span class="active">हिन्दी</span>
+</div>
+
+<header>
+  <h1>पुणे गणेशोत्सव हेरिटेज गाइड</h1>
+  <p>पुणे के ५ मानाचे गणपति और ऐतिहासिक मंडल • फ़ोटो पर टैप करें ज़ूम के लिए</p>
+</header>
+
+<div class="control-grid"></div>
+<div class="tour-actions"></div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा १</span>
+    <img src="RDT_20260918_2002262026210432573628454.jpg" alt="१. श्री कस्बा गणपति">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>१. श्री कस्बा गणपति</h2>
+    <div class="subhead">पुणे के ग्रामदैवत • स्थापना १६३०</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> १६३० में राजमाता जीजाबाई और छत्रपति शिवाजी महाराज ने इस गणपति की स्थापना की थी। बीजापुर की सेना द्वारा पुणे को नष्ट किए जाने के बाद विनायक ठकार के घर के पास यह स्वयंभू मूर्ति मिली थी। जीजाबाई ने इसे शुभ संकेत मानकर मंदिर बनवाया और युवा शिवाजी महाराज ने सोने के हल से पुणे की भूमि जोतकर स्वराज्य स्थापना का संकल्प लिया।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> अनंत चतुर्दशी के विसर्जन जुलूस में माना का सर्वोच्च पहला स्थान कस्बा गणपति को प्राप्त है। चांदी की भव्य पालकी (चांदी चा रथ) में यह विसर्जन के लिए निकलते हैं। जब तक कस्बा गणपति विसर्जन घाट तक नहीं पहुँचते, तब तक किसी भी अन्य मंडल को मुख्य मार्ग पर जुलूस निकालने की अनुमति नहीं होती।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> सख्त गुलाल-मुक्त नियम: मूर्ति और प्राचीन चांदी के रथ को किसी भी रासायनिक नुकसान से बचाने के लिए इस पर गुलाल उड़ाने पर पूरी तरह प्रतिबंध है। विसर्जन से पूर्व की विदाई आरती पारंपरिक रूप से केवल महिला श्रद्धालुओं द्वारा की जाती है।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> ऊपर 'मानाचा पहिला ॥ श्री कसबा गणपती ॥' लिखा हुआ प्रकाशित बोर्ड और चांदी के सिंहासन के दोनों ओर नक्काशीदार चांदी के शेर स्पष्ट दिखाई देते हैं।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा २</span>
+    <img src="RDT_20260918_2003067532741119726472104.jpg" alt="२. श्री तांबड़ी जोगेश्वरी गणपति">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>२. श्री तांबड़ी जोगेश्वरी गणपति</h2>
+    <div class="subhead">पुणे की कुलदेवी • स्थापना १८९३</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> तांबड़ी जोगेश्वरी पुणे की ग्रामदेवी (संरक्षक देवी) हैं। यह मंदिर १५वीं शताब्दी का है और १८९३ में इसके प्रांगण में सार्वजनिक गणेशोत्सव शुरू हुआ। पेशवा काल में किसी भी सैन्य अभियान पर जाने से पहले पेशवा यहाँ आकर आशीर्वाद लेते थे।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> लक्ष्मी रोड पर विसर्जन जुलूस में यह दूसरे स्थान पर 'शेषरथ' (नागराज शेषनाग के फन वाले भव्य रथ) पर सवार होकर निकलते हैं।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> पीढ़ियों से शाडू मिट्टी की मूर्ति: हर साल धुमाल परिवार के मूर्तिकारों द्वारा प्राकृतिक शाडू (नदी की) मिट्टी से यह मूर्ति बनाई जाती है। मूर्ति हमेशा अभयमुद्रा में और त्रिशूल धारण किए हुए एक ही मुद्रा में गढ़ी जाती है। इस मूर्ति पर भी गुलाल नहीं उड़ाया जाता।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> नक्काशीदार काले-चांदी के प्राचीन मंदिर मखर में विराजमान मूर्ति, हाथों में त्रिशूल और पीले-बैंगनी रेशमी पीतांबर में सजी हुई।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा ३</span>
+    <img src="RDT_20260918_2002461841165002373983641.jpg" alt="३. श्री गुरुजी तालीम गणपति">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>३. श्री गुरुजी तालीम गणपति</h2>
+    <div class="subhead">सद्भाव और शौर्य का प्रतीक • स्थापना १८८७</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> लोकमान्य तिलक द्वारा सार्वजनिक गणेशोत्सव को लोकप्रिय बनाने से ६ वर्ष पूर्व (१८८७ में) भीकू शिंदे और नानासाहेब खासगीवाले जैसे पहलवानों ने अपने मुस्लिम साथी पहलवानों के साथ मिलकर एक पारंपरिक अखाड़े (तालीम) में इसकी शुरुआत की थी।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> विसर्जन जुलूस में यह तीसरे स्थान पर चलते हैं। यह मंडल अपने भव्य और कलात्मक पुष्प-सज्जित रथों (पुष्परथ) के लिए विख्यात है।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> हिंदू-मुस्लिम एकता का प्रतीक: इस मंडल की स्थापना और संचालन हिंदू और मुस्लिम दोनों पहलवानों द्वारा मिलकर किया गया था, और मुस्लिम परिवार ऐतिहासिक रूप से इसके प्रबंधन में सक्रिय रहे हैं। पुणे में भव्य कलात्मक झांकियाँ शुरू करने का पहला श्रेय भी इसी मंडल को जाता है।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> पीछे पूरी तरह से सुनहरी नक्काशीदार दीवार और गोलाकार प्रभामंडल; नीचे चबूतरे पर स्पष्ट रूप से 'गुरुजी तालीमचा गणपती' लिखा हुआ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा ४</span>
+    <img src="RDT_20260918_200253415866741747137374.jpg" alt="४. श्री तुलसीबाग गणपति">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>४. श्री तुलसीबाग गणपति</h2>
+    <div class="subhead">पुणे की विशाल शाडू मिट्टी की मूर्ति • स्थापना १९०१</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> पुणे के व्यस्ततम व्यापारिक बाजार (तुलसीबाग) के व्यापारियों और कारीगरों ने १९०१ में इस मंडल की स्थापना की थी। पुणे में विशाल और आदमकद मिट्टी की मूर्तियाँ स्थापित करने की परंपरा इसी मंडल ने शुरू की।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> विसर्जन पदानुक्रम में चौथा स्थान। मूर्ति के अत्यधिक वजन और भारी चांदी के आभूषणों के कारण इसे विशेष रूप से तैयार किए गए मजबूत रथ पर ले जाया जाता है।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> ८० किलो से अधिक शुद्ध चांदी: लगभग १४ से १५ फीट ऊंची इस शाडू मिट्टी की मूर्ति को ८० किलो से अधिक शुद्ध चांदी के आभूषण, मुकुट, कवच और परशु-त्रिशूल से सजाया जाता है। खातावकर परिवार १०० वर्षों से अधिक समय से बांस और पुआल के ढांचे पर यह विशाल मूर्ति बना रहा है।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> हाथ में परशु और त्रिशूल लिए लगभग १४ फीट ऊंची विशाल मूर्ति, सिर पर बहुमंजिला चांदी का मुकुट और नीचे मोबाइल से फोटो लेते श्रद्धालु।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा ५</span>
+    <img src="RDT_20260918_2001334111954814690421123.jpg" alt="५. श्री केसरीवाड़ा गणपति">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>५. श्री केसरीवाड़ा गणपति</h2>
+    <div class="subhead">भारतीय स्वतंत्रता संग्राम की पावन भूमि • स्थापना १८९४</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> लोकमान्य बाल गंगाधर तिलक ने १८९४ में विंचूरकर वाड़ा में इसकी शुरुआत की और १९०५ में इसे केसरीवाड़ा ले आए, जहाँ से उनके समाचार पत्र 'केसरी' और 'मराठा' प्रकाशित होते थे। तिलक ने ब्रिटिशों के जन-सभा विरोधी कानूनों को चुनौती देने और जनता को स्वराज्य के लिए एकजुट करने हेतु इस मंच का उपयोग किया।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> ५ मानाचे गणपति का विसर्जन जुलूस केसरीवाड़ा गणपति की पालकी के साथ समाप्त होता है। इसके गुजरने के बाद ही अन्य सामान्य शहर के मंडलों को मुख्य मार्ग पर प्रवेश की अनुमति मिलती है।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> पारंपरिक लकड़ी की पालकी: यहाँ किसी ट्रक या ट्रैक्टर का उपयोग नहीं होता; पर्यावरण-अनुकूल मिट्टी की मूर्ति को स्वयंसेवकों द्वारा कंधों पर उठाई गई पारंपरिक लकड़ी की पालकी में ले जाया जाता है। स्वामी विवेकानंद, महात्मा गांधी और नेताजी सुभाष चंद्र बोस जैसी महान हस्तियों ने यहाँ ऐतिहासिक भाषण दिए हैं।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> गहरे नीले मखमली चौरंग पर विराजमान पारंपरिक शाडू की मूर्ति (साइड प्रोफाइल), जिसके सामने नारियल और फलों का नैवेद्य रखा हुआ है।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">पुणे का गौरव</span>
+    <img src="RDT_20260918_2003168713579542178375404.jpg" alt="श्रीमंत दगडूशेठ हलवाई गणपति">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>श्रीमंत दगडूशेठ हलवाई गणपति</h2>
+    <div class="subhead">विश्वविख्यात दिव्य धाम • स्थापना १८९३</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> हलवाई दगडूशेठ गाडवे और उनकी पत्नी लक्ष्मीबाई ने प्लेग की महामारी में अपने इकलौते बेटे को खोने के बाद अपने गुरु माधवनाथ महाराज की प्रेरणा से १८९३ में इस मंदिर की स्थापना की थी। लोकमान्य तिलक स्वयं इसकी स्थापना के साक्षी रहे थे।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> भारत के सबसे संपन्न धर्मार्थ ट्रस्टों में से एक द्वारा संचालित, जो अस्पताल, विद्यालय और आपदा राहत कार्य करता है। उत्सव के दौरान प्राचीन भारतीय मंदिरों की विशाल और भव्य अस्थायी प्रतिकृतियां बनाने के लिए प्रसिद्ध है।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> ४० किलो से अधिक शुद्ध सोना: बाप्पा की मूर्ति को ४० किलोग्राम से अधिक शुद्ध सोने के आभूषणों और रत्नों से सुसज्जित किया जाता है। ऋषि पंचमी के दिन तड़के ३०,००० से अधिक महिलाएं पारंपरिक परिधान में एक स्वर में अथर्वशीर्ष का पाठ करती हैं।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> सोने से अलंकृत विश्वप्रसिद्ध मूर्ति, जो मोर की नक्काशी वाली गहरे रंग की पत्थर की मेहराब के नीचे विराजमान है।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">पुणे का गौरव</span>
+    <img src="RDT_20260918_2002404229573933674161513.jpg" alt="अखिल मंडई मंडल (शारदा गजानन)">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>अखिल मंडई मंडल (शारदा गजानन)</h2>
+    <div class="subhead">देवी शारदा और गजानन • स्थापना १८९४</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> पुणे के ऐतिहासिक थोक बाजार (महात्मा फुले मंडई) के सब्जी और फल विक्रेताओं द्वारा १८९४ में स्थापित, जो शहर के श्रमजीवी वर्ग की आस्था का प्रतीक है।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> विसर्जन जुलूस में यह मूर्ति फूलों से सजे एक भव्य और मनमोहक 'झूले' पर विराजमान होकर निकलती है, जो पूरे रास्ते धीरे-धीरे झूलता रहता है।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> दुर्लभ संयुक्त मूर्ति: पूरे भारत में यह एकमात्र ऐसा प्रमुख गणपति मंडल है जहाँ भगवान गणेश के साथ विद्या और ज्ञान की अधिष्ठात्री देवी शारदा (सरस्वती) विराजमान हैं, जो बुद्धि और ज्ञान के संगम को दर्शाती हैं।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> क्षैतिज फ़ोटो जिसमें भगवान गणेश के साथ चमकीली पीली पैठणी साड़ी में देवी शारदा की मूर्ति एक साथ विराजमान दिखाई देती है।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">ऐतिहासिक प्रथम</span>
+    <img src="RDT_20260918_2002337133742980811714858.jpg" alt="श्रीमंत भाऊसाहेब रंगारी गणपति">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>श्रीमंत भाऊसाहेब रंगारी गणपति</h2>
+    <div class="subhead">भारत का पहला सार्वजनिक गणपति • स्थापना १८९२</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> आयुर्वेदिक चिकित्सक और क्रांतिकारी भाऊसाहेब लक्ष्मण जावले (रंगारी) द्वारा १८९२ में स्थापित—तिलक द्वारा गणेशोत्सव को लोकप्रिय बनाने से एक वर्ष पूर्व। रंगारी ने ब्रिटिश शासन के खिलाफ गुप्त सशस्त्र क्रांति की योजना बनाने के लिए इस उत्सव को एक माध्यम के रूप में उपयोग किया।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> यहाँ की अद्वितीय मूर्ति में भगवान गणेश को त्रिशूल से एक राक्षस (असुर) का वध करते हुए दिखाया गया है, जो ब्रिटिश औपनिवेशिक उत्पीड़न को उखाड़ फेंकने का एक प्रतीकात्मक आह्वान था।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> १३४ वर्ष पुरानी मूल मूर्ति: १८९२ में कागज की लुगदी, लकड़ी और प्राकृतिक रंगों से बनी मूल मूर्ति का कभी विसर्जन नहीं किया जाता और १३० से अधिक वर्षों से उसी मूल मूर्ति की पूजा होती आ रही है। रंगारी के ऐतिहासिक वाड़े में हथियार छिपाने के लिए गुप्त तहखाने थे।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> त्रिशूल से नीले राक्षस का वध करते हुए वीर मुद्रा में गणपति, पीछे गुलाबी मेहराब और 'Asia Book of Records' का प्रमाण पत्र।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">लोकप्रिय मंडल</span>
+    <img src="RDT_20260918_2003006388806393465905583.jpg" alt="पुण्याचा राजा (सदाशिव पेठ)">
+    <span class="zoom-hint">🔍 टैप करें ज़ूम के लिए</span>
+  </div>
+  <div class="card-body">
+    <h2>पुण्याचा राजा (सदाशिव पेठ)</h2>
+    <div class="subhead">सदाशिव पेठ का प्रसिद्ध मंडल</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> मराठी विद्वता, कला और पारंपरिक संस्कृति के केंद्र माने जाने वाले सदाशिव पेठ का यह एक प्रमुख और अत्यंत लोकप्रिय मंडल है।</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> उत्सव के दौरान मराठा साम्राज्य के प्रसिद्ध किलों (रायगढ़, सिंहगढ़) और पेशवा दरबारों की जीवंत और भव्य झांकियां तैयार करने के लिए जाना जाता है।</div>
+    <div class="trivia"><strong>विशेष रोचक तथ्य:</strong> मूषक पर वीर मुद्रा: अधिकांश मूर्तियों की तरह पद्मासन में बैठने के बजाय, 'पुण्याचा राजा' अपने वाहन मूषक (चूहे) पर सवार एक वीर योद्धा की ओजस्वी मुद्रा में प्रतिष्ठित हैं।</div>
+    <div class="cue"><strong>फ़ोटो पहचान:</strong> अपने मूषक वाहन पर वीर मुद्रा में सवार सुनहरे गणपति, ऊपर सुनहरे अक्षरों में 'पुण्याचा राजा' का प्रकाशित बोर्ड।</div>
+  </div>
+</div>
+
+<script src="addon.js"></script>
+</body>
+</html>
