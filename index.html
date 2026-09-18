@@ -1,347 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Pune Ganeshotsav Heritage Guide</title>
-
-<!-- Google Fonts Preload -->
+<title>पुण्याचे मानाचे व प्रमुख गणपती</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Mukta:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #7a0c23;
-    --gold: #c59616;
-    --gold-bg: #fdf8ec;
-    --bg: #f5f3ef;
-    --card: #ffffff;
-    --text: #221e1a;
-    --muted: #5c544d;
-    --border: #e2dacd;
+    --primary: #7a0c23; --gold: #c59616; --gold-bg: #fdf8ec;
+    --bg: #f6f4ef; --card: #ffffff; --text: #201c18; --muted: #5c544d;
+    --border: #e2dacd; --font-scale: 1;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); padding: 12px; padding-bottom: 30px; line-height: 1.5; transition: font-family 0.15s ease; }
+  body { font-family: 'Mukta', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 12px; padding-bottom: 40px; line-height: 1.55; }
   
-  header { background: linear-gradient(135deg, var(--primary), #480513); color: #fff; padding: 18px 14px; border-radius: 12px; text-align: center; border-bottom: 3px solid var(--gold); margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
-  header h1 { font-size: 1.3rem; color: #ffdf88; margin-bottom: 3px; }
-  header p { font-size: .82rem; color: #f3e8db; }
+  .lang-bar { text-align: center; font-size: .92rem; font-weight: 700; padding: 6px 0 10px; color: var(--muted); }
+  .lang-bar span.active { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+  .lang-bar a { color: #555; text-decoration: none; margin: 0 8px; }
+
+  header { background: linear-gradient(135deg, var(--primary), #460512); color: #fff; padding: 16px 14px; border-radius: 12px; text-align: center; border-bottom: 3px solid var(--gold); margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
+  header h1 { font-size: calc(1.3rem * var(--font-scale)); color: #ffdf88; margin-bottom: 3px; font-weight: 700; }
+  header p { font-size: calc(0.82rem * var(--font-scale)); color: #f3e8db; }
   
-  /* Top Font Toolbar */
-  .font-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 25px;
-    padding: 7px 16px;
-    margin: 0 auto 16px auto;
-    width: fit-content;
-    max-width: 100%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-  }
-  .font-bar label {
-    font-size: .8rem;
-    font-weight: 700;
-    color: var(--primary);
-  }
-  .font-bar select {
-    border: none;
-    background: transparent;
-    font-size: .8rem;
-    font-weight: 600;
-    color: var(--text);
-    outline: none;
-    cursor: pointer;
-  }
+  .control-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .tool-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.04); }
+  .tool-pill label { font-size: .76rem; font-weight: 700; color: var(--primary); }
+  .tool-pill select { border: none; background: transparent; font-size: .78rem; font-weight: 600; color: var(--text); outline: none; cursor: pointer; }
+  
+  .size-stepper { display: inline-flex; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; background: var(--card); }
+  .size-btn { border: none; background: transparent; padding: 5px 11px; font-size: .78rem; font-weight: 700; color: var(--primary); cursor: pointer; border-right: 1px solid var(--border); }
+  .size-btn:last-child { border-right: none; }
+  .size-btn.active { background: var(--primary); color: #fff; }
+
+  .tour-actions { display: flex; gap: 8px; width: 100%; max-width: 440px; margin: 0 auto 14px; }
+  .tour-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 8px; font-size: calc(.78rem * var(--font-scale)); font-weight: 700; color: var(--primary); text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; }
+  .tour-btn.walking { background: #edf7ee; border-color: #c2e6c4; color: #1b5e20; }
 
   .card { background: var(--card); border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 7px rgba(0,0,0,0.06); border: 1px solid var(--border); overflow: hidden; }
-  
-  .img-box { position: relative; height: 300px; background: #181513; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
+  .img-box { position: relative; height: 310px; background: #181513; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
   .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .zoom-hint { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: .7rem; padding: 3px 8px; border-radius: 12px; pointer-events: none; }
-  
-  .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #1c1200; font-size: .72rem; font-weight: 700; padding: 4px 9px; border-radius: 14px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.25); }
+  .zoom-hint { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.72); color: #fff; font-size: .72rem; padding: 3px 9px; border-radius: 12px; pointer-events: none; }
+  .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #1c1200; font-size: .75rem; font-weight: 700; padding: 4px 10px; border-radius: 14px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.25); }
   .badge.legend { background: #fff; color: #0d47a1; }
   
   .card-body { padding: 14px; }
-  h2 { font-size: 1.15rem; color: var(--primary); margin-bottom: 2px; }
-  .subhead { font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: 10px; }
-  
-  .sec { margin: 8px 0; font-size: .84rem; line-height: 1.45; }
+  h2 { font-size: calc(1.18rem * var(--font-scale)); color: var(--primary); margin-bottom: 2px; font-weight: 700; }
+  .subhead { font-size: calc(.82rem * var(--font-scale)); font-weight: 600; color: var(--muted); margin-bottom: 10px; }
+  .sec { margin: 8px 0; font-size: calc(.85rem * var(--font-scale)); line-height: 1.55; }
   .sec strong { color: var(--primary); }
-  
-  .trivia { background: #f0f7ff; border-left: 3px solid #1976d2; padding: 8px 10px; font-size: .8rem; border-radius: 0 6px 6px 0; margin-top: 8px; color: #0d47a1; line-height: 1.4; }
-  .trivia strong { color: #0a3880; }
-  
-  .cue { background: var(--gold-bg); border-left: 3px solid var(--gold); padding: 8px 10px; font-size: .8rem; border-radius: 0 6px 6px 0; margin-top: 8px; color: #523d06; line-height: 1.4; }
-  .cue strong { color: #2e2202; }
+  .trivia { background: #f0f7ff; border-left: 3.5px solid #1976d2; padding: 8px 11px; font-size: calc(.82rem * var(--font-scale)); border-radius: 0 6px 6px 0; margin-top: 8px; color: #0d47a1; line-height: 1.5; }
+  .cue { background: var(--gold-bg); border-left: 3.5px solid var(--gold); padding: 8px 11px; font-size: calc(.82rem * var(--font-scale)); border-radius: 0 6px 6px 0; margin-top: 8px; color: #523d06; line-height: 1.5; }
+  .map-link { display: inline-flex; align-items: center; gap: 6px; background: #fdfbf7; color: #1b5e20; border: 1px solid #c2dec9; border-radius: 8px; padding: 7px 12px; font-size: calc(.8rem * var(--font-scale)); font-weight: 700; text-decoration: none; margin-top: 10px; }
 
-  /* Zoom Modal */
   #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; touch-action: none; overflow: hidden; }
   #modal-bar { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); z-index: 10001; }
   #modal-title { color: #ffdf88; font-size: .85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
   .ctrl-btns { display: flex; gap: 6px; }
   .ctrl-btn { background: #2c2c2c; color: #fff; border: 1px solid #555; border-radius: 18px; padding: 6px 12px; font-size: .8rem; font-weight: 700; cursor: pointer; }
   .ctrl-btn.close-btn { background: #a00; border-color: #c00; }
-  
   #viewport { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   #modal-img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: center center; transition: transform 0.12s ease-out; user-select: none; }
 </style>
 </head>
 <body>
 
+<div class="lang-bar">
+  <span class="active">मराठी</span> | <a href="index-en.html">English</a> | <a href="index-hi.html">हिन्दी</a>
+</div>
+
 <header>
-  <h1>Pune Ganeshotsav Heritage Guide</h1>
-  <p>The 5 Manache Ganpatis & Historic Mandals • Tap photo to zoom</p>
+  <h1>पुण्याचे मानाचे व प्रमुख गणपती</h1>
+  <p>पुण्याचे ५ मानाचे व ऐतिहासिक गणपती • फोटोवर टॅप करा झूमसाठी</p>
 </header>
 
-<!-- Top Font Selector -->
-<div class="font-bar">
-  <label for="font-select">Aa Font:</label>
-  <select id="font-select" onchange="changeFont(this.value)">
-    <option value="system-ui, -apple-system, sans-serif">System Default</option>
-    <option value="'Poppins', sans-serif">Poppins (Modern Clean)</option>
-    <option value="'Merriweather', serif">Merriweather (Classic Editorial)</option>
-    <option value="'Playfair Display', serif">Playfair (Royal Serif)</option>
-    <option value="'Montserrat', sans-serif">Montserrat (Geometric Sans)</option>
-  </select>
-</div>
+<div class="control-grid"></div>
+<div class="tour-actions"></div>
 
-<div id="list"></div>
-
-<!-- Zoom Modal -->
-<div id="modal">
-  <div id="modal-bar">
-    <span id="modal-title"></span>
-    <div class="ctrl-btns">
-      <button class="ctrl-btn" onclick="applyZoom(0.4)">＋</button>
-      <button class="ctrl-btn" onclick="applyZoom(-0.4)">−</button>
-      <button class="ctrl-btn" onclick="resetZoom()">⟲</button>
-      <button class="ctrl-btn close-btn" onclick="closeModal()">✕</button>
-    </div>
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा १ ला</span>
+    <img src="RDT_20260918_2002262026210432573628454.jpg" alt="१. श्री कसबा गणपती[span_4](start_span)"[span_4](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
   </div>
-  <div id="viewport">
-    <img id="modal-img" src="" alt="Enlarged view">
+  <div class="card-body">
+    <h2>१. श्री कसबा गणपती</h2>
+    <div class="subhead">पुण्याचे ग्रामदैवत • स्थापना १६३०</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> १६३० मध्ये राजमाता जिजाऊ माँसाहेब आणि छत्रपती शिवाजी महाराज यांनी या गणपतीची स्थापना केली. विजापूरच्या सैन्याने पुणे उद्ध्वस्त केल्यानंतर विनायक ठकार यांच्या घराजवळ ही स्वयंभू मूर्ती सापडली. जिजाऊंनी यास शुभशकुन मानून मंदिर उभारले आणि शिवरायांनी पुण्यात सोन्याचा नांगर फिरवून स्वराज्य स्थापनेची प्रतिज्ञा केली.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> अनंत चतुर्दशीच्या विसर्जन मिरवणुकीत मानाचे सर्वोच्च पहिले स्थान कसबा गणपतीला आहे. चांदीच्या भव्य पालखीतून मिरवणूक निघते. हा गणपती विसर्जन घाटावर पोहोचेपर्यंत इतर कोणत्याही मंडळाला मुख्य रस्त्यावर मिरवणूक सुरू करण्याची परवानगी नसते.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> गुलाल बंदी नियम: मूर्ती व चांदीच्या ऐतिहासिक रथाचे नुकसान होऊ नये म्हणून या रथावर गुलाल उधळण्यास सक्त मनाई असते. विसर्जनापूर्वीची निरोपाची आरती पारंपरिकपणे केवळ महिला भाविकांच्या हस्ते केली जाते.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> वर 'मानाचा पहिला ॥ श्री कसबा गणपती ॥' असा फलक आणि चांदीच्या सिंहासनाभोवती दोन चांदीचे सिंह स्पष्ट दिसतात.</div>
   </div>
 </div>
 
-<script>
-const data = [
-  {
-    m: "Maan 1 (मानाचा १ ला)",
-    bClass: "",
-    t: "1. Shri Kasba Ganpati",
-    e: "Gramdaivat of Pune • Established 1630 CE",
-    f: "RDT_20260918_2002262026210432573628454.jpg",
-    hist: "Consecrated by Rajmata Jijabai and young Chhatrapati Shivaji Maharaj when Pune was rebuilt after being destroyed by Bijapur forces. An ancient, self-manifested (swayambhu) stone idol was found near Vinayak Thakar's home. Shivaji Maharaj plowed the nearby soil with a ceremonial golden plow and prayed here before embarking on his campaigns for Swarajya.",
-    proc: "Holds the supreme 1st place of honor and officially leads Pune's immersion procession on Anant Chaturdashi in a silver palanquin (Chaandi cha Rath). City police hold back all general mandals until Kasba Ganpati reaches the immersion ghat.",
-    trivia: "Strict No-Gulal Rule: No orange gulal powder is thrown onto this idol or its palanquin to prevent chemical erosion of the antique silver. The farewell aarti before visarjan is traditionally conducted exclusively by women devotees.",
-    cue: "Illuminated top signboard reading 'मानाचा पहिला ॥ श्री कसबा गणपती ॥' with twin sculpted silver lions flanking the silver throne."
-  },
-  {
-    m: "Maan 2 (मानाचा २ रा)",
-    bClass: "",
-    t: "2. Shri Tambdi Jogeshwari Ganpati",
-    e: "Goddess Jogeshwari Shrine Deity • Established 1893 CE",
-    f: "RDT_20260918_2003067532741119726472104.jpg",
-    hist: "Dedicated to Goddess Jogeshwari, the patron goddess (Gramdevi) of Pune. The temple dates back to the 15th century, and the public festival was started in its courtyard in 1893. The Peshwas sought blessings here before undertaking military expeditions.",
-    proc: "Marches 2nd along Laxmi Road on the legendary 'Sheshrath'—a grand chariot crested with the multi-headed serpent Sheshnaag.",
-    trivia: "Generational Clay Sculpting: Hand-sculpted every year from natural river clay (shadu maati) by the Dhumal artisan family in an unchanging posture: seated in Abhayamudra while holding tridents (trishuls). Like Kasba Ganpati, it strictly prohibits gulal spraying.",
-    cue: "Idol seated inside a dark carved antique silver temple arch (makhar), holding tridents and draped in yellow and purple silk pitambar."
-  },
-  {
-    m: "Maan 3 (मानाचा ३ रा)",
-    bClass: "",
-    t: "3. Shri Guruji Talim Ganpati",
-    e: "Symbol of Harmony & Valour • Established 1887 CE",
-    f: "RDT_20260918_2002461841165002373983641.jpg",
-    hist: "Founded six years before Tilak popularized public Ganeshotsav by wrestling masters (ustads) Bhiku Shinde and Nana Khasgiwale alongside their Muslim wrestling peers from a traditional gymnasium (talim).",
-    proc: "Marches 3rd in the Laxmi Road procession, acclaimed for massive flower-decked display floats (Pushparath).",
-    trivia: "Pioneer of Interfaith Brotherhood: Established and financed jointly by Hindu and Muslim wrestlers, with Muslim families historically managing festival logistics. It was also the first mandal in Pune to introduce grand artistic decorative floats.",
-    cue: "Radiant, fully golden sculpted sanctum wall with a circular halo; pedestal explicitly inscribed with 'गुरुजी तालीमचा गणपती'."
-  },
-  {
-    m: "Maan 4 (मानाचा ४ था)",
-    bClass: "",
-    t: "4. Shri Tulshibaug Ganpati",
-    e: "The Grand Clay Idol of Pune • Established 1901 CE",
-    f: "RDT_20260918_200253415866741747137374.jpg",
-    hist: "Established by merchants, brass-smiths, and traders of Pune's busiest retail market (Tulshibaug) in 1901. Pioneered the tradition of giant, life-sized clay murtis in the city.",
-    proc: "4th in the procession hierarchy. Carried on a heavy-duty mechanized chariot due to the immense weight of the idol and its jewelry.",
-    trivia: "Over 80 kg of Pure Silver: The towering ~14-foot clay idol is dressed in over 80 kg of genuine silver ornaments, armor, and weapons (axe and trident). The Khatavkar family has sculpted this massive murti annually for over a century using specialized bamboo/straw armatures.",
-    cue: "Majestic ~14-foot clay murti holding an axe and trident, wearing an ornate tiered silver crown with devotees snapping photos below."
-  },
-  {
-    m: "Maan 5 (मानाचा ५ वा)",
-    bClass: "",
-    t: "5. Shri Kesariwada Ganpati",
-    e: "Cradle of India's Freedom Awakening • Established 1894 CE",
-    f: "RDT_20260918_2001334111954814690421123.jpg",
-    hist: "Started by Lokmanya Bal Gangadhar Tilak at Vinchurkar Wada and shifted in 1905 to Kesariwada, headquarters of his anti-colonial newspapers 'Kesari' and 'Mahratta'. Tilak used this festival platform to bypass British anti-assembly laws and mobilize citizens for Swarajya.",
-    proc: "Completes and closes the prestigious 5 Manache Ganpatis. General city mandals are only permitted to enter the main procession after Kesariwada passes.",
-    trivia: "Authentic Wooden Palkhi: Shuns trucks and tractors; the modest eco-friendly clay idol is carried on the shoulders of volunteers in an antique wooden palanquin. Freedom icons like Swami Vivekananda, Mahatma Gandhi, and Netaji Subhash Chandra Bose delivered speeches here.",
-    cue: "Side profile of traditional clay murti seated on a royal blue velvet chowrang, with fresh coconuts and fruit offerings arranged in front."
-  },
-  {
-    m: "City Legend",
-    bClass: "legend",
-    t: "Shrimant Dagdusheth Halwai Ganpati",
-    e: "World-Renowned Divine Splendour • Established 1893 CE",
-    f: "RDT_20260918_2003168713579542178375404.jpg",
-    hist: "Founded by Lingayat sweetmaker Dagdusheth Gadve and his wife Lakshmibai after losing their only son to the plague. On their spiritual guru's advice, they channeled their grief and wealth into establishing this shrine. Tilak was a close associate and attended the installation.",
-    proc: "Supported by one of India's richest charitable trusts funding hospitals, schools, and disaster relief. Famous for commissioning monumental temporary replicas of ancient Indian temple architecture.",
-    trivia: "40+ kg of Solid Gold: The idol is adorned with over 40 kilograms of pure gold, studded with diamonds and gems. On Rishi Panchami, 30,000+ women gather at dawn in traditional attire to chant the Atharvashirsha in unison.",
-    cue: "World-famous gold-covered idol seated beneath a dark carved stone archway decorated with sculpted peacock motifs."
-  },
-  {
-    m: "City Legend",
-    bClass: "legend",
-    t: "Akhil Mandai Mandal (Sharada Gajanan)",
-    e: "Goddess Sharada & Ganesha • Established 1894 CE",
-    f: "RDT_20260918_2002404229573933674161513.jpg",
-    hist: "Founded by the vegetable and fruit vendors of Pune's historic municipal market (Mahatma Phule Mandai), honoring the city's working-class heritage.",
-    proc: "Visarjan takes place on a grand ceremonial swing (Jhula) covered in flowers that gently sways throughout the procession.",
-    trivia: "Rare Dual Murti: The only prominent Ganesha mandal in India featuring Lord Ganesha seated alongside Goddess Sharada (Saraswati), the goddess of wisdom and arts, symbolizing the fusion of intellect and learning.",
-    cue: "Wide landscape orientation showing Lord Ganesha seated side-by-side with Goddess Sharada draped in a bright yellow Paithani saree."
-  },
-  {
-    m: "Historic 1st",
-    bClass: "legend",
-    t: "Shrimant Bhausaheb Rangari Ganpati",
-    e: "India's First Public Ganeshotsav Idol • Established 1892 CE",
-    f: "RDT_20260918_2002337133742980811714858.jpg",
-    hist: "Installed in 1892 by Ayurvedic physician and undercover revolutionary Bhausaheb Laxman Javale (Rangari)—one year before Tilak publicized the festival. Rangari used religious gatherings as cover to organize underground armed resistance against British rule.",
-    proc: "The unique warrior-pose idol portrays Ganesha subduing a winged demon (asura) with a trishul, serving as an allegorical call for Indians to overthrow colonial oppression.",
-    trivia: "134-Year-Old Original Murti: The original 1892 idol—crafted from paper-pulp, wood, and vegetable resins—is never immersed and has been worshipped continuously for over 130 years. Rangari's historic wada contained secret chambers for storing revolutionary weapons.",
-    cue: "Warrior-pose Ganesha slaying a blue demon with a trident, inside a pink scalloped archway with the Asia Book of Records certificate."
-  },
-  {
-    m: "Famous Mandal",
-    bClass: "legend",
-    t: "Punyacha Raja (Sadashiv Peth)",
-    e: "Iconic Mandal of Sadashiv Peth",
-    f: "RDT_20260918_2003006388806393465905583.jpg",
-    hist: "A cornerstone devotional mandal of Sadashiv Peth—a neighborhood long revered as the heart of traditional Marathi scholarship, performing arts, and heritage.",
-    proc: "Renowned for elaborate themed stage settings replicating Maratha hill forts (Raigad, Sinhagad) and royal Peshwa darbars.",
-    trivia: "Heroic Equestrian Stance: Rather than standard seated postures, Punyacha Raja is famously sculpted in a warrior pose seated atop his celestial vehicle, the mouse (Mushak).",
-    cue: "Golden Ganesha in an active warrior pose mounted on his mouse vehicle beneath an illuminated golden 'पुण्याचा राजा' sign."
-  }
-];
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा २ रा</span>
+    <img src="RDT_20260918_2003067532741119726472104.jpg" alt="२. श्री तांबडी जोगेश्वरी गणपती[span_5](start_span)"[span_5](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
+  </div>
+  <div class="card-body">
+    <h2>२. श्री तांबडी जोगेश्वरी गणपती</h2>
+    <div class="subhead">पुण्याची ग्रामदेवता • स्थापना १८९३</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> तांबडी जोगेश्वरी ही पुण्याची ग्रामदेवता आहे. हे मंदिर १५ व्या शतकातील असून १८९३ मध्ये येथे सार्वजनिक गणेशोत्सवाची सुरुवात झाली. पेशवे काळात मोहिमेवर निघण्यापूर्वी पेशवे या मंदिरात येऊन आशीर्वाद घेत असत.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> लक्ष्मी रस्त्यावरील विसर्जन मिरवणुकीत हा गणपती दुसऱ्या क्रमांकावर 'शेषरथा'तून (नागराजाच्या फण्यांचा भव्य रथ) मार्गस्थ होतो.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> पिढ्यानपिढ्या शाडू मातीची मूर्ती: दरवर्षी धुमाळ घराण्यातील मूर्तिकार पारंपरिक शाडूच्या मातीपासून मूर्ती घडवतात. मूर्ती नेहमी अभयमुद्रेतील आणि त्रिशूळधारी असते. या मूर्तीवरही गुलाल उधळला जात नाही.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> प्राचीन नक्षीदार काळ्या-चांदीच्या मखरात विराजमान मूर्ती, हातात त्रिशूळ व अंगावर पिवळे-जांभळे रेशमी पितांबर दिसते.</div>
+  </div>
+</div>
 
-const list = document.getElementById("list");
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा ३ रा</span>
+    <img src="RDT_20260918_2002461841165002373983641.jpg" alt="३. श्री गुरुजी तालीम गणपती[span_6](start_span)"[span_6](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
+  </div>
+  <div class="card-body">
+    <h2>३. श्री गुरुजी तालीम गणपती</h2>
+    <div class="subhead">ऐक्य व शौर्याचे प्रतीक • स्थापना १८८७</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> टिळकांनी सार्वजनिक गणेशोत्सवाचा प्रसार करण्यापूर्वी ६ वर्षे आधी (१८८७ मध्ये) भिकू शिंदे आणि नानासाहेब खासगीवाले या तालमीतील मल्लांनी हा उत्सव सुरू केला.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> विसर्जन मिरवणुकीत मानाचा तिसरा क्रमांक असतो. गुरुजी तालीम मंडळ आपल्या नेत्रदीपक आणि भव्य पुष्प देखाव्यांच्या रथासाठी (पुष्परथ) प्रसिद्ध आहे.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> हिंदू-मुस्लिम ऐक्याचे प्रतीक: हा गणपती हिंदू आणि मुस्लिम पैलवानांनी मिळून स्थापन केला होता. मुस्लिम कुटुंबे पिढ्यानपिढ्या उत्सवाच्या व्यवस्थापनात सक्रिय सहभागी असतात. पुण्यात सर्वात आधी कलात्मक देखावे सुरू करण्याचा मान याच मंडळाकडे जातो.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> मागे संपूर्ण सुवर्ण रंगाची नक्षीदार भिंत आणि गोलाकार तेजोवलय; खाली चांदीच्या चौरंगावर 'गुरुजी तालीमचा गणपती' कोरलेले दिसते.</div>
+  </div>
+</div>
 
-data.forEach((item, i) => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-    <div class="img-box" onclick="openModal('${item.f}', '${item.t}')">
-      <span class="badge ${item.bClass}">${item.m}</span>
-      <img src="${item.f}" alt="${item.t}" loading="lazy">
-      <span class="zoom-hint">🔍 Tap to Zoom</span>
-    </div>
-    <div class="card-body">
-      <h2>${item.t}</h2>
-      <div class="subhead">${item.e}</div>
-      <div class="sec"><strong>Historical Insight:</strong> ${item.hist}</div>
-      <div class="sec"><strong>Visarjan Protocol:</strong> ${item.proc}</div>
-      <div class="trivia"><strong>Lesser-Known Trivia:</strong> ${item.trivia}</div>
-      <div class="cue"><strong>Visual Cue:</strong> ${item.cue}</div>
-    </div>
-  `;
-  list.appendChild(card);
-});
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा ४ था</span>
+    <img src="RDT_20260918_200253415866741747137374.jpg" alt="४. श्री तुळशीबाग गणपती[span_7](start_span)"[span_7](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
+  </div>
+  <div class="card-body">
+    <h2>४. श्री तुळशीबाग गणपती</h2>
+    <div class="subhead">पुण्याची भव्य शाडूची मूर्ती • स्थापना १९०१</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> तुळशीबाग बाजारपेठेतील व्यापारी, भांडी व्यावसायिक आणि कारागिरांनी १९०१ मध्ये या मंडळाची स्थापना केली. पुण्यात सर्वात प्रथम भव्य आकाराची मूर्ती बसवण्याची परंपरा या मंडळाने सुरू केली.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> विसर्जन मिरवणुकीत चौथा क्रमांक असतो. मूर्तीचे प्रचंड वजन आणि चांदीच्या दागिन्यांमुळे हा गणपती विशेष मजबूत रथातून विसर्जनासाठी नेला जातो.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> ८० किलोहून अधिक शुद्ध चांदी: सुमारे १४ ते १५ फूट उंच असलेल्या या मूर्तीवर ८० किलोहून अधिक चांदीचे दागिने, मुकुट, चिलखत आणि परशू-त्रिशूळ ही आयुधे परिधान केलेली असतात. खातावकर कुटुंबीय १०० वर्षांहून अधिक काळ ही भव्य मूर्ती घडवत आहेत.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> हातात परशू व त्रिशूळ घेतलेली भव्य १४ फुटी शाडूची मूर्ती, डोक्यावर बहुमजली चांदीचा मुकुट आणि खाली मोबाईलने फोटो काढणारे भाविक.</div>
+  </div>
+</div>
 
-/* Font Switching Engine */
-function changeFont(fontFamily) {
-  document.body.style.fontFamily = fontFamily;
-  try {
-    localStorage.setItem("pune_ganpati_font", fontFamily);
-  } catch(e) {}
-}
+<div class="card">
+  <div class="img-box">
+    <span class="badge">मानाचा ५ वा</span>
+    <img src="RDT_20260918_2001334111954814690421123.jpg" alt="५. श्री केसरीवाडा गणपती[span_8](start_span)"[span_8](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
+  </div>
+  <div class="card-body">
+    <h2>५. श्री केसरीवाडा गणपती</h2>
+    <div class="subhead">स्वातंत्र्यलढ्याची कर्मभूमी • स्थापना १८९४</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> लोकमान्य बाळ गंगाधर टिळकांनी १८९४ मध्ये विंचूरकर वाड्यात हा उत्सव सुरू केला आणि १९०५ मध्ये तो केसरीवाड्यात आणला. ब्रिटिश सरकारच्या एकत्र येण्याच्या बंदी हुकुमाला आव्हान देण्यासाठी आणि जनतेला स्वातंत्र्यलढ्यासाठी जागृत करण्यासाठी टिळकांनी या गणेशोत्सवाचा उपयोग केला.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> पाच मानाच्या गणपतींचा विसर्जन समारोप केसरीवाडा गणपतीच्या पालखीने होतो. केसरीवाडा मार्गस्थ झाल्यानंतरच इतर शेकडो सार्वजनिक मंडळांना मुख्य रस्त्यावर येण्याची परवानगी मिळते.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> पारंपरिक लाकडी पालखी: येथे कोणताही ट्रॅक्टर किंवा ट्रक वापरला जात नाही; पर्यावरणपूरक शाडूची मूर्ती खांद्यावरील लाकडी पालखीतून विसर्जित केली जाते. स्वामी विवेकानंद, महात्मा गांधी आणि नेताजी सुभाषचंद्र बोस यांनी येथे ऐतिहासिक भाषणे दिली आहेत.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> गडद निळ्या मखमली चौरंगावर ठेवलेली पारंपरिक शाडूची मूर्ती (साइड प्रोफाइल); समोर ताटात नारळ व फळांचा नैवेद्य मांडलेला दिसतो.</div>
+  </div>
+</div>
 
-const savedFont = localStorage.getItem("pune_ganpati_font");
-if (savedFont) {
-  document.body.style.fontFamily = savedFont;
-  document.getElementById("font-select").value = savedFont;
-}
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">पुण्याचे वैभव</span>
+    <img src="RDT_20260918_2003168713579542178375404.jpg" alt="श्रीमंत दगडूशेठ हलवाई गणपती[span_9](start_span)"[span_9](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
+  </div>
+  <div class="card-body">
+    <h2>श्रीमंत दगडूशेठ हलवाई गणपती</h2>
+    <div class="subhead">विश्वविख्यात श्रद्धास्थान • स्थापना १८९३</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> श्रीमंत दगडूशेठ हलवाई आणि त्यांच्या पत्नी लक्ष्मीबाई यांनी प्लेगच्या साथीत एकुलत्या एका मुलाचे निधन झाल्यानंतर, गुरु माधवनाथ महाराजांच्या सल्ल्याने १८९३ मध्ये या मंदिराची स्थापना केली. लोकमान्य टिळक या स्थापनेला प्रत्यक्ष उपस्थित होते.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> दगडूशेठ हलवाई ट्रस्ट सामाजिक, वैद्यकीय आणि शैक्षणिक क्षेत्रात अग्रगण्य आहे. दरवर्षी भारतातील प्रसिद्ध प्राचीन मंदिरांच्या भव्य प्रतिकृतींचे देखावे उभारले जातात.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> ४० किलोहून अधिक शुद्ध सोने: मूर्तीला ४० किलोपेक्षा जास्त वजनाचे सोन्याचे दागिने आणि हिरेजडित मुकुट परिधान केला जातो. ऋषिपंचमीच्या दिवशी पहाटे ३०,००० हून अधिक महिला पारंपरिक वेशात एकत्र येऊन एका सुरात अथर्वशीर्ष पठण करतात.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> सोन्याने मढलेली मूर्ती आणि मागे मोर व नक्षीकाम केलेली गडद रंगाची दगडी कमान दिसते.</div>
+  </div>
+</div>
 
-/* Fullscreen Zoom & Pan Engine */
-let currentScale = 1;
-let posX = 0, posY = 0;
-let isDragging = false;
-let startX = 0, startY = 0;
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modal-img");
-const modalTitle = document.getElementById("modal-title");
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">पुण्याचे वैभव</span>
+    <img src="RDT_20260918_2002404229573933674161513.jpg" alt="अखिल मंडई मंडळ (शारदा गजानन)[span_10](start_span)"[span_10](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
+  </div>
+  <div class="card-body">
+    <h2>अखिल मंडई मंडळ (शारदा गजानन)</h2>
+    <div class="subhead">शारदा माता व गजानन • स्थापना १८९४</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> महात्मा फुले मंडईतील भाजीपाला व फळविक्रेत्यांनी १८९४ मध्ये या मंडळाची स्थापना केली. पुण्याच्या कष्टकरी जनतेचे हे आराध्य दैवत मानले जाते.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> विसर्जन मिरवणुकीत हा गणपती फुलांनी सजवलेल्या भव्य 'झुल्या'वरून (झोपाळ्यावरून) अत्यंत मनमोहक पद्धतीने मार्गस्थ होतो.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> जगातील दुर्मिळ संयुक्त मूर्ती: गणपती बाप्पांच्या शेजारी विद्येची देवता शारदा माता (सरस्वती) विराजमान असलेली ही भारतातील एकमेव प्रमुख सार्वजनिक मूर्ती आहे, जी बुद्धी आणि ज्ञानाचा सुंदर संगम दर्शवते.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> आडव्या फोटोत गणपती बाप्पांच्या शेजारी पिवळी पैठणी साडी नेसलेली शारदा मातेची मूर्ती विराजमान दिसते.</div>
+  </div>
+</div>
 
-function openModal(src, title) {
-  modalImg.src = src;
-  modalTitle.innerText = title;
-  modal.style.display = "block";
-  document.body.style.overflow = "hidden";
-  resetZoom();
-}
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">ऐतिहासिक पहिला</span>
+    <img src="RDT_20260918_2002337133742980811714858.jpg" alt="श्रीमंत भाऊसाहेब रंगारी गणपती[span_11](start_span)"[span_11](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
+  </div>
+  <div class="card-body">
+    <h2>श्रीमंत भाऊसाहेब रंगारी गणपती</h2>
+    <div class="subhead">भारतातील पहिला सार्वजनिक गणपती • स्थापना १८९२</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> आयुर्वेदिक वैद्य आणि क्रांतिकारक भाऊसाहेब लक्ष्मण जावळे (रंगारी) यांनी १८९२ मध्ये भारतातील पहिल्या सार्वजनिक गणेशोत्सवाची स्थापना केली—टिळकांनी उत्सव लोकप्रिय करण्याच्या एक वर्ष आधी! रंगारींनी ब्रिटिशांविरुद्ध सशस्त्र क्रांतीची गुप्त योजना आखण्यासाठी या उत्सवाचा उपयोग केला.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> येथील मूर्ती अत्यंत रौद्र आणि वैशिष्ट्यपूर्ण आहे: गणपती बाप्पा त्रिशूळाने एका राक्षसाचा वध करताना दिसतात. हा राक्षस म्हणजे अत्याचारी ब्रिटिश सत्तेचे प्रतीक होते.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> १३४ वर्षे जुनी मूळ मूर्ती: १८९२ मध्ये कागदाचा लगदा, लाकूड आणि नैसर्गिक वनस्पतींपासून तयार केलेली मूळ मूर्ती कधीही विसर्जित केली जात नाही; आजही तीच मूळ मूर्ती पूजली जाते. रंगारी यांच्या ऐतिहासिक वाड्यात शस्त्रे लपवण्यासाठी भुयारी खोल्या होत्या.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> निळ्या राक्षसाचा त्रिशूळाने वध करणारे गणपतींचे रूप, मागे फिकट गुलाबी कमान आणि 'Asia Book of Records' चे मानपत्र दिसते.</div>
+  </div>
+</div>
 
-function closeModal() {
-  modal.style.display = "none";
-  document.body.style.overflow = "auto";
-}
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">लोकप्रिय मंडळ</span>
+    <img src="RDT_20260918_2003006388806393465905583.jpg" alt="पुण्याचा राजा (सदाशिव पेठ)[span_12](start_span)"[span_12](end_span)>
+    <span class="zoom-hint">🔍 टॅप करा झूमसाठी</span>
+  </div>
+  <div class="card-body">
+    <h2>पुण्याचा राजा (सदाशिव पेठ)</h2>
+    <div class="subhead">सदाशिव पेठेतील मानाचा राजा</div>
+    <div class="sec"><strong>इतिहास व महत्त्व:</strong> संस्कृती, अभ्यास आणि कलेचे केंद्र मानल्या जाणाऱ्या सदाशिव पेठेतील हे अत्यंत लोकप्रिय मंडळ आहे. ऐतिहासिक परंपरा आणि सामाजिक उपक्रमांसाठी हे प्रसिद्ध आहे.</div>
+    <div class="sec"><strong>विसर्जन परंपरा:</strong> उत्सवात रायगड, सिंहगड यांसारख्या मराठा गडकिल्ल्यांचे आणि पेशवेकालीन दरबारांचे भव्य देखावे साकारण्यासाठी हे मंडळ ओळखले जाते.</div>
+    <div class="trivia"><strong>विशेष रंजक तथ्य:</strong> मूषक वाहनावरील वीर मुद्रा: बहुतांश गणपती पद्मासनात बसलेले असतात, परंतु 'पुण्याचा राजा' आपल्या मूषक (उंदीर) वाहनावर स्वार झालेल्या एका वीर योद्ध्याच्या रुबाबदार मुद्रेत विराजमान असतो.</div>
+    <div class="cue"><strong>फोटो ओळख:</strong> मूषक वाहनावर वीर मुद्रेत विराजमान मूर्ती आणि वर सोनेरी अक्षरात कोरलेला 'पुण्याचा राजा' असा फलक.</div>
+  </div>
+</div>
 
-function updateTransform() {
-  modalImg.style.transform = `translate(${posX}px, ${posY}px) scale(${currentScale})`;
-}
-
-function applyZoom(delta) {
-  currentScale = Math.min(Math.max(1, currentScale + delta), 4.5);
-  if (currentScale === 1) { posX = 0; posY = 0; }
-  updateTransform();
-}
-
-function resetZoom() {
-  currentScale = 1;
-  posX = 0;
-  posY = 0;
-  updateTransform();
-}
-
-/* Double-tap to Toggle Zoom */
-let lastTap = 0;
-modalImg.addEventListener("touchend", function(e) {
-  const now = new Date().getTime();
-  if (now - lastTap < 300 && now - lastTap > 0) {
-    if (currentScale > 1.2) resetZoom();
-    else { currentScale = 2.4; updateTransform(); }
-    e.preventDefault();
-  }
-  lastTap = now;
-});
-
-/* Touch Drag & Pan */
-modalImg.addEventListener("touchstart", function(e) {
-  if (currentScale > 1 && e.touches.length === 1) {
-    isDragging = true;
-    startX = e.touches[0].clientX - posX;
-    startY = e.touches[0].clientY - posY;
-  }
-});
-
-modalImg.addEventListener("touchmove", function(e) {
-  if (isDragging && currentScale > 1 && e.touches.length === 1) {
-    posX = e.touches[0].clientX - startX;
-    posY = e.touches[0].clientY - startY;
-    updateTransform();
-    e.preventDefault();
-  }
-});
-
-modalImg.addEventListener("touchend", function() {
-  isDragging = false;
-});
-</script>
+<script src="addon.js"></script>
 </body>
 </html>
-
