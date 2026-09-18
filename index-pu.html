@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ਪੁਣੇ ਗਣੇਸ਼ ਉਤਸਵ ਹੈਰੀਟੇਜ ਗਾਈਡ | Pune Ganpatis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Mukta:wght@400;600;700;800&family=Noto+Sans+Gurmukhi:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #7a0c23; --gold: #c59616; --gold-bg: #fdf8ec;
+    --bg: #f6f4ef; --card: #ffffff; --text: #201c18; --muted: #5c544d;
+    --border: #e2dacd; --font-scale: 1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Noto Sans Gurmukhi', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 12px; padding-bottom: 40px; line-height: 1.6; }
+  
+  .lang-bar { text-align: center; font-size: .92rem; font-weight: 700; padding: 6px 0 10px; color: var(--muted); }
+  .lang-bar span.active { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 2px; }
+  .lang-bar a { color: #555; text-decoration: none; margin: 0 8px; }
+
+  header { background: linear-gradient(135deg, var(--primary), #460512); color: #fff; padding: 16px 14px; border-radius: 12px; text-align: center; border-bottom: 3px solid var(--gold); margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
+  header h1 { font-size: calc(1.3rem * var(--font-scale)); color: #ffdf88; margin-bottom: 3px; font-weight: 700; }
+  header p { font-size: calc(0.82rem * var(--font-scale)); color: #f3e8db; }
+  
+  .control-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .tool-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.04); }
+  .tool-pill label { font-size: .76rem; font-weight: 700; color: var(--primary); }
+  .tool-pill select { border: none; background: transparent; font-size: .78rem; font-weight: 600; color: var(--text); outline: none; cursor: pointer; }
+  
+  .size-stepper { display: inline-flex; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; background: var(--card); }
+  .size-btn { border: none; background: transparent; padding: 5px 11px; font-size: .78rem; font-weight: 700; color: var(--primary); cursor: pointer; border-right: 1px solid var(--border); }
+  .size-btn:last-child { border-right: none; }
+  .size-btn.active { background: var(--primary); color: #fff; }
+
+  .tour-actions { display: flex; gap: 8px; width: 100%; max-width: 440px; margin: 0 auto 14px; }
+  .tour-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 8px; font-size: calc(.78rem * var(--font-scale)); font-weight: 700; color: var(--primary); text-decoration: none; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; }
+  .tour-btn.walking { background: #edf7ee; border-color: #c2e6c4; color: #1b5e20; }
+
+  .card { background: var(--card); border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 7px rgba(0,0,0,0.06); border: 1px solid var(--border); overflow: hidden; }
+  .img-box { position: relative; height: 310px; background: #181513; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
+  .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .zoom-hint { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.72); color: #fff; font-size: .72rem; padding: 3px 9px; border-radius: 12px; pointer-events: none; }
+  .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #1c1200; font-size: .75rem; font-weight: 700; padding: 4px 10px; border-radius: 14px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.25); }
+  .badge.legend { background: #fff; color: #0d47a1; }
+  
+  .card-body { padding: 14px; }
+  h2 { font-size: calc(1.18rem * var(--font-scale)); color: var(--primary); margin-bottom: 2px; font-weight: 700; }
+  .subhead { font-size: calc(.82rem * var(--font-scale)); font-weight: 600; color: var(--muted); margin-bottom: 10px; }
+  .sec { margin: 8px 0; font-size: calc(.85rem * var(--font-scale)); line-height: 1.6; }
+  .sec strong { color: var(--primary); }
+  .trivia { background: #f0f7ff; border-left: 3.5px solid #1976d2; padding: 8px 11px; font-size: calc(.82rem * var(--font-scale)); border-radius: 0 6px 6px 0; margin-top: 8px; color: #0d47a1; line-height: 1.55; }
+  .cue { background: var(--gold-bg); border-left: 3.5px solid var(--gold); padding: 8px 11px; font-size: calc(.82rem * var(--font-scale)); border-radius: 0 6px 6px 0; margin-top: 8px; color: #523d06; line-height: 1.55; }
+  .map-link { display: inline-flex; align-items: center; gap: 6px; background: #fdfbf7; color: #1b5e20; border: 1px solid #c2dec9; border-radius: 8px; padding: 7px 12px; font-size: calc(.8rem * var(--font-scale)); font-weight: 700; text-decoration: none; margin-top: 10px; }
+
+  #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; touch-action: none; overflow: hidden; }
+  #modal-bar { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); z-index: 10001; }
+  #modal-title { color: #ffdf88; font-size: .85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
+  .ctrl-btns { display: flex; gap: 6px; }
+  .ctrl-btn { background: #2c2c2c; color: #fff; border: 1px solid #555; border-radius: 18px; padding: 6px 12px; font-size: .8rem; font-weight: 700; cursor: pointer; }
+  .ctrl-btn.close-btn { background: #a00; border-color: #c00; }
+  #viewport { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  #modal-img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: center center; transition: transform 0.12s ease-out; user-select: none; }
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <a href="index.html">मराठी</a> | <a href="index-en.html">English</a> | <a href="index-hi.html">हिन्दी</a> | <span class="active">ਪੰਜਾਬੀ</span>
+</div>
+
+<header>
+  <h1>ਪੁਣੇ ਗਣੇਸ਼ ਉਤਸਵ ਹੈਰੀਟੇਜ ਗਾਈਡ</h1>
+  <p>ਪੁਣੇ ਦੇ ੫ ਮਾਨਾਚੇ ਗਣਪਤੀ ਅਤੇ ਇਤਿਹਾਸਕ ਮੰਡਲ • ਫੋਟੋ 'ਤੇ ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</p>
+</header>
+
+<div class="control-grid"></div>
+<div class="tour-actions"></div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">ਮਾਨ ੧</span>
+    <img src="RDT_20260918_2002262026210432573628454.jpg" alt="੧. ਸ਼੍ਰੀ ਕਸਬਾ ਗਣਪਤੀ">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>੧. ਸ਼੍ਰੀ ਕਸਬਾ ਗਣਪਤੀ</h2>
+    <div class="subhead">ਪੁਣੇ ਦੇ ਗ੍ਰਾਮਦੇਵਤਾ • ਸਥਾਪਨਾ ੧੬੩੦</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ੧੬੩੦ ਵਿੱਚ ਰਾਜਮਾਤਾ ਜੀਜਾਬਾਈ ਅਤੇ ਛੱਤਰਪਤੀ ਸ਼ਿਵਾਜੀ ਮਹਾਰਾਜ ਨੇ ਇਸ ਗਣਪਤੀ ਦੀ ਸਥਾਪਨਾ ਕੀਤੀ। ਬੀਜਾਪੁਰ ਦੀ ਫ਼ੌਜ ਦੁਆਰਾ ਪੁਣੇ ਨੂੰ ਤਬਾਹ ਕਰਨ ਤੋਂ ਬਾਅਦ ਵਿਨਾਇਕ ਠਾਕਰ ਦੇ ਘਰ ਨੇੜੇ ਇਹ ਸਵੈ-ਪ੍ਰਗਟ (ਸਵਯੰਭੂ) ਮੂਰਤੀ ਮਿਲੀ ਸੀ। ਜੀਜਾਬਾਈ ਨੇ ਇਸ ਨੂੰ ਸ਼ੁਭ ਸੰਕੇਤ ਮੰਨ ਕੇ ਮੰਦਰ ਬਣਵਾਇਆ ਅਤੇ ਸ਼ਿਵਾਜੀ ਮਹਾਰਾਜ ਨੇ ਸੋਨੇ ਦੇ ਹਲ ਨਾਲ ਜ਼ਮੀਨ ਵਾਹ ਕੇ ਸਵਰਾਜ ਸਥਾਪਨਾ ਦਾ ਸੰਕਲਪ ਲਿਆ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ਅਨੰਤ ਚਤੁਰਦਸ਼ੀ ਦੇ ਵਿਸਰਜਨ ਜਲੂਸ ਵਿੱਚ ਮਾਨ ਦਾ ਸਭ ਤੋਂ ਪਹਿਲਾ ਸਥਾਨ ਕਸਬਾ ਗਣਪਤੀ ਨੂੰ ਪ੍ਰਾਪਤ ਹੈ। ਚਾਂਦੀ ਦੀ ਸ਼ਾਨਦਾਰ ਪਾਲਕੀ (ਰਥ) ਵਿੱਚ ਜਲੂਸ ਨਿਕਲਦਾ ਹੈ। ਜਦੋਂ ਤੱਕ ਕਸਬਾ ਗਣਪਤੀ ਵਿਸਰਜਨ ਘਾਟ 'ਤੇ ਨਹੀਂ ਪਹੁੰਚਦੇ, ਕਿਸੇ ਵੀ ਹੋਰ ਮੰਡਲ ਨੂੰ ਮੁੱਖ ਸੜਕ 'ਤੇ ਜਲੂਸ ਸ਼ੁਰੂ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੁੰਦੀ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ਗੁਲਾਲ ਬੰਦੀ ਨਿਯਮ: ਮੂਰਤੀ ਅਤੇ ਚਾਂਦੀ ਦੇ ਇਤਿਹਾਸਕ ਰਥ ਨੂੰ ਨੁਕਸਾਨ ਤੋਂ ਬਚਾਉਣ ਲਈ ਇਸ 'ਤੇ ਗੁਲਾਲ ਉਡਾਉਣ ਦੀ ਸਖ਼ਤ ਮਨਾਹੀ ਹੈ। ਵਿਸਰਜਨ ਤੋਂ ਪਹਿਲਾਂ ਦੀ ਵਿਦਾਈ ਆਰਤੀ ਰਵਾਇਤੀ ਤੌਰ 'ਤੇ ਕੇਵਲ ਮਹਿਲਾ ਸ਼ਰਧਾਲੂਆਂ ਦੁਆਰਾ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਉੱਪਰ 'मानाचा पहिला ॥ श्री कसबा गणपती ॥' ਲਿਖਿਆ ਹੋਇਆ ਬੋਰਡ ਅਤੇ ਚਾਂਦੀ ਦੇ ਸਿੰਘਾਸਣ ਦੁਆਲੇ ਦੋ ਚਾਂਦੀ ਦੇ ਸ਼ੇਰ ਸਾਫ਼ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">ਮਾਨ ੨</span>
+    <img src="RDT_20260918_2003067532741119726472104.jpg" alt="੨. ਸ਼੍ਰੀ ਤਾਂਬੜੀ ਜੋਗੇਸ਼ਵਰੀ ਗਣਪਤੀ">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>੨. ਸ਼੍ਰੀ ਤਾਂਬੜੀ ਜੋਗੇਸ਼ਵਰੀ ਗਣਪਤੀ</h2>
+    <div class="subhead">ਪੁਣੇ ਦੀ ਕੁਲਦੇਵੀ • ਸਥਾਪਨਾ ੧੮੯੩</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ਤਾਂਬੜੀ ਜੋਗੇਸ਼ਵਰੀ ਪੁਣੇ ਦੀ ਗ੍ਰਾਮਦੇਵੀ (ਰੱਖਿਅਕ ਦੇਵੀ) ਹਨ। ਇਹ ਮੰਦਰ ੧੫ਵੀਂ ਸਦੀ ਦਾ ਹੈ ਅਤੇ ੧੮੯੩ ਵਿੱਚ ਇਸ ਦੇ ਵਿਹੜੇ ਵਿੱਚ ਜਨਤਕ ਗਣੇਸ਼ ਉਤਸਵ ਸ਼ੁਰੂ ਹੋਇਆ ਸੀ। ਪੇਸ਼ਵਾ ਕਾਲ ਵਿੱਚ ਕਿਸੇ ਵੀ ਮੁਹਿੰਮ 'ਤੇ ਜਾਣ ਤੋਂ ਪਹਿਲਾਂ ਪੇਸ਼ਵਾ ਇੱਥੇ ਆਸ਼ੀਰਵਾਦ ਲੈਂਦੇ ਸਨ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ਲਕਸ਼ਮੀ ਰੋਡ 'ਤੇ ਵਿਸਰਜਨ ਜਲੂਸ ਵਿੱਚ ਇਹ ਦੂਜੇ ਨੰਬਰ 'ਤੇ 'ਸ਼ੇਸ਼ਰਥ' (ਸ਼ੇਸ਼ਨਾਗ ਦੇ ਫਣਾਂ ਵਾਲੇ ਰਥ) 'ਤੇ ਸਵਾਰ ਹੋ ਕੇ ਨਿਕਲਦੇ ਹਨ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ਪੀੜ੍ਹੀਆਂ ਤੋਂ ਸ਼ਾਡੂ ਮਿੱਟੀ ਦੀ ਮੂਰਤੀ: ਹਰ ਸਾਲ ਧੁਮਾਲ ਪਰਿਵਾਰ ਦੇ ਮੂਰਤੀਕਾਰਾਂ ਦੁਆਰਾ ਕੁਦਰਤੀ ਸ਼ਾਡੂ (ਨਦੀ ਦੀ) ਮਿੱਟੀ ਨਾਲ ਇਹ ਮੂਰਤੀ ਬਣਾਈ ਜਾਂਦੀ ਹੈ। ਮੂਰਤੀ ਹਮੇਸ਼ਾ ਅਭੈਮੁਦਰਾ ਵਿੱਚ ਅਤੇ ਤ੍ਰਿਸ਼ੂਲ ਧਾਰਨ ਕੀਤੇ ਹੋਏ ਹੁੰਦੀ ਹੈ। ਇਸ ਮੂਰਤੀ 'ਤੇ ਵੀ ਗੁਲਾਲ ਨਹੀਂ ਉਡਾਇਆ ਜਾਂਦਾ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਨੱਕਾਸ਼ੀਦਾਰ ਕਾਲੇ-ਚਾਂਦੀ ਦੇ ਪ੍ਰਾਚੀਨ ਮਖਰ ਵਿੱਚ ਬਿਰਾਜਮਾਨ ਮੂਰਤੀ, ਹੱਥਾਂ ਵਿੱਚ ਤ੍ਰਿਸ਼ੂਲ ਅਤੇ ਪੀਲੇ-ਜਾਮਣੀ ਰੇਸ਼ਮੀ ਪੀਤਾਂਬਰ ਵਿੱਚ ਸਜੀ ਹੋਈ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">ਮਾਨ ੩</span>
+    <img src="RDT_20260918_2002461841165002373983641.jpg" alt="੩. ਸ਼੍ਰੀ ਗੁਰੂਜੀ ਤਾਲੀਮ ਗਣਪਤੀ">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>੩. ਸ਼੍ਰੀ ਗੁਰੂਜੀ ਤਾਲੀਮ ਗਣਪਤੀ</h2>
+    <div class="subhead">ਏਕਤਾ ਅਤੇ ਬਹਾਦਰੀ ਦਾ ਪ੍ਰਤੀਕ • ਸਥਾਪਨਾ ੧੮੮੭</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ਲੋਕਮਾਨਿਆ ਤਿਲਕ ਦੁਆਰਾ ਜਨਤਕ ਗਣੇਸ਼ ਉਤਸਵ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ੬ ਸਾਲ ਪਹਿਲਾਂ (੧੮੮੭ ਵਿੱਚ) ਭੀਕੂ ਸ਼ਿੰਦੇ ਅਤੇ ਨਾਨਾਸਾਹਿਬ ਖਾਸਗੀਵਾਲੇ ਵਰਗੇ ਪਹਿਲਵਾਨਾਂ ਨੇ ਆਪਣੇ ਮੁਸਲਿਮ ਸਾਥੀ ਪਹਿਲਵਾਨਾਂ ਨਾਲ ਮਿਲ ਕੇ ਇੱਕ ਅਖਾੜੇ (ਤਾਲੀਮ) ਵਿੱਚ ਇਸ ਦੀ ਸ਼ੁਰੂਆਤ ਕੀਤੀ ਸੀ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ਵਿਸਰਜਨ ਜਲੂਸ ਵਿੱਚ ਇਹ ਤੀਜੇ ਸਥਾਨ 'ਤੇ ਚੱਲਦੇ ਹਨ। ਇਹ ਮੰਡਲ ਆਪਣੇ ਸ਼ਾਨਦਾਰ ਅਤੇ ਕਲਾਤਮਕ ਫੁੱਲਾਂ ਦੇ ਰਥਾਂ (ਪੁਸ਼ਪਰਥ) ਲਈ ਮਸ਼ਹੂਰ ਹੈ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ਹਿੰਦੂ-ਮੁਸਲਿਮ ਏਕਤਾ ਦਾ ਪ੍ਰਤੀਕ: ਇਸ ਮੰਡਲ ਦੀ ਸਥਾਪਨਾ ਹਿੰਦੂ ਅਤੇ ਮੁਸਲਿਮ ਪਹਿਲਵਾਨਾਂ ਨੇ ਰਲ ਕੇ ਕੀਤੀ ਸੀ, ਅਤੇ ਮੁਸਲਿਮ ਪਰਿਵਾਰ ਇਤਿਹਾਸਕ ਤੌਰ 'ਤੇ ਪ੍ਰਬੰਧ ਵਿੱਚ ਸ਼ਾਮਲ ਰਹੇ ਹਨ। ਪੁਣੇ ਵਿੱਚ ਸ਼ਾਨਦਾਰ ਕਲਾਤਮਕ ਝਾਕੀਆਂ ਸ਼ੁਰੂ ਕਰਨ ਦਾ ਪਹਿਲਾ ਮਾਣ ਵੀ ਇਸੇ ਮੰਡਲ ਨੂੰ ਜਾਂਦਾ ਹੈ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਪਿੱਛੇ ਪੂਰੀ ਤਰ੍ਹਾਂ ਸੁਨਹਿਰੀ ਨੱਕਾਸ਼ੀਦਾਰ ਕੰਧ ਅਤੇ ਗੋਲਾਕਾਰ ਆਭਾਮੰਡਲ; ਹੇਠਾਂ ਚੌਂਕੀ 'ਤੇ ਸਾਫ਼ ਤੌਰ 'ਤੇ 'गुरुजी तालीमचा गणपती' ਲਿਖਿਆ ਹੋਇਆ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">ਮਾਨ ੪</span>
+    <img src="RDT_20260918_200253415866741747137374.jpg" alt="੪. ਸ਼੍ਰੀ ਤੁਲਸੀਬਾਗ ਗਣਪਤੀ">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>੪. ਸ਼੍ਰੀ ਤੁਲਸੀਬਾਗ ਗਣਪਤੀ</h2>
+    <div class="subhead">ਪੁਣੇ ਦੀ ਵਿਸ਼ਾਲ ਸ਼ਾਡੂ ਮਿੱਟੀ ਦੀ ਮੂਰਤੀ • ਸਥਾਪਨਾ ੧੯੦੧</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ਤੁਲਸੀਬਾਗ ਬਾਜ਼ਾਰ ਦੇ ਵਪਾਰੀਆਂ ਅਤੇ ਕਾਰੀਗਰਾਂ ਨੇ ੧੯੦੧ ਵਿੱਚ ਇਸ ਮੰਡਲ ਦੀ ਸਥਾਪਨਾ ਕੀਤੀ ਸੀ। ਪੁਣੇ ਵਿੱਚ ਵੱਡੀਆਂ ਅਤੇ ਵਿਸ਼ਾਲ ਮੂਰਤੀਆਂ ਸਥਾਪਤ ਕਰਨ ਦੀ ਪਰੰਪਰਾ ਇਸੇ ਮੰਡਲ ਨੇ ਸ਼ੁਰੂ ਕੀਤੀ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ਵਿਸਰਜਨ ਲੜੀ ਵਿੱਚ ਚੌਥਾ ਸਥਾਨ। ਮੂਰਤੀ ਦੇ ਭਾਰੀ ਵਜ਼ਨ ਅਤੇ ਚਾਂਦੀ ਦੇ ਗਹਿਣਿਆਂ ਕਾਰਨ ਇਸ ਨੂੰ ਵਿਸ਼ੇਸ਼ ਮਜ਼ਬੂਤ ਰਥ 'ਤੇ ਲਿਜਾਇਆ ਜਾਂਦਾ ਹੈ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ੮੦ ਕਿਲੋ ਤੋਂ ਵੱਧ ਸ਼ੁੱਧ ਚਾਂਦੀ: ਲਗਭਗ ੧੪-੧੫ ਫੁੱਟ ਉੱਚੀ ਇਸ ਮੂਰਤੀ ਨੂੰ ੮੦ ਕਿਲੋ ਤੋਂ ਵੱਧ ਚਾਂਦੀ ਦੇ ਗਹਿਣੇ, ਮੁਕਟ, ਕਵਚ ਅਤੇ ਸ਼ਸਤਰਾਂ ਨਾਲ ਸਜਾਇਆ ਜਾਂਦਾ ਹੈ। ਖਤਾਵਕਰ ਪਰਿਵਾਰ ੧੦੦ ਸਾਲਾਂ ਤੋਂ ਵੱਧ ਸਮੇਂ ਤੋਂ ਇਹ ਵਿਸ਼ਾਲ ਮੂਰਤੀ ਬਣਾ ਰਿਹਾ ਹੈ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਹੱਥ ਵਿੱਚ ਕੁਹਾੜਾ (ਪਰਸ਼ੂ) ਅਤੇ ਤ੍ਰਿਸ਼ੂਲ ਲਈ ਵਿਸ਼ਾਲ ੧੪ ਫੁੱਟ ਦੀ ਮੂਰਤੀ, ਸਿਰ 'ਤੇ ਬਹੁ-ਮੰਜ਼ਿਲਾ ਚਾਂਦੀ ਦਾ ਮੁਕਟ ਅਤੇ ਹੇਠਾਂ ਫੋਟੋ ਖਿੱਚਦੇ ਸ਼ਰਧਾਲੂ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge">ਮਾਨ ੫</span>
+    <img src="RDT_20260918_2001334111954814690421123.jpg" alt="੫. ਸ਼੍ਰੀ ਕੇਸਰੀਵਾੜਾ ਗਣਪਤੀ">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>੫. ਸ਼੍ਰੀ ਕੇਸਰੀਵਾੜਾ ਗਣਪਤੀ</h2>
+    <div class="subhead">ਆਜ਼ਾਦੀ ਸੰਗਰਾਮ ਦੀ ਪਵਿੱਤਰ ਧਰਤੀ • ਸਥਾਪਨਾ ੧੮੯੪</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ਲੋਕਮਾਨਿਆ ਬਾਲ ਗੰਗਾਧਰ ਤਿਲਕ ਨੇ ੧੮੯੪ ਵਿੱਚ ਵਿੰਚੂਰਕਰ ਵਾੜਾ ਵਿਖੇ ਸ਼ੁਰੂਆਤ ਕੀਤੀ ਅਤੇ ੧੯੦੫ ਵਿੱਚ ਕੇਸਰੀਵਾੜਾ ਲੈ ਆਏ, ਜਿੱਥੋਂ ਉਨ੍ਹਾਂ ਦੇ ਅਖ਼ਬਾਰ 'ਕੇਸਰੀ' ਅਤੇ 'ਮਰਹੱਟਾ' ਛਪਦੇ ਸਨ। ਤਿਲਕ ਨੇ ਅੰਗਰੇਜ਼ਾਂ ਵਿਰੁੱਧ ਲੋਕਾਂ ਨੂੰ ਇੱਕਜੁੱਟ ਕਰਨ ਲਈ ਇਸ ਮੰਚ ਦੀ ਵਰਤੋਂ ਕੀਤੀ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ੫ ਮਾਨਾਚੇ ਗਣਪਤੀਆਂ ਦਾ ਵਿਸਰਜਨ ਜਲੂਸ ਕੇਸਰੀਵਾੜਾ ਗਣਪਤੀ ਦੀ ਪਾਲਕੀ ਨਾਲ ਸਮਾਪਤ ਹੁੰਦਾ ਹੈ। ਇਸ ਤੋਂ ਬਾਅਦ ਹੀ ਸ਼ਹਿਰ ਦੇ ਬਾਕੀ ਮੰਡਲਾਂ ਨੂੰ ਮੁੱਖ ਸੜਕ 'ਤੇ ਆਉਣ ਦੀ ਇਜਾਜ਼ਤ ਮਿਲਦੀ ਹੈ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ਰਵਾਇਤੀ ਲੱਕੜ ਦੀ ਪਾਲਕੀ: ਇੱਥੇ ਕੋਈ ਟਰੱਕ ਜਾਂ ਟਰੈਕਟਰ ਨਹੀਂ ਵਰਤਿਆ ਜਾਂਦਾ; ਵਾਤਾਵਰਣ-ਅਨੁਕੂਲ ਮੂਰਤੀ ਨੂੰ ਮੋਢਿਆਂ 'ਤੇ ਚੁੱਕੀ ਲੱਕੜ ਦੀ ਪਾਲਕੀ ਵਿੱਚ ਲਿਜਾਇਆ ਜਾਂਦਾ ਹੈ। ਸੁਆਮੀ ਵਿਵੇਕਾਨੰਦ, ਮਹਾਤਮਾ ਗਾਂਧੀ ਅਤੇ ਨੇਤਾਜੀ ਸੁਭਾਸ਼ ਚੰਦਰ ਬੋਸ ਨੇ ਇੱਥੇ ਇਤਿਹਾਸਕ ਭਾਸ਼ਣ ਦਿੱਤੇ ਹਨ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਗੂੜ੍ਹੇ ਨੀਲੇ ਮਖਮਲੀ ਚੌਰੰਗ 'ਤੇ ਬਿਰਾਜਮਾਨ ਰਵਾਇਤੀ ਸ਼ਾਡੂ ਦੀ ਮੂਰਤੀ (ਸਾਈਡ ਪ੍ਰੋਫਾਈਲ), ਜਿਸ ਅੱਗੇ ਨਾਰੀਅਲ ਅਤੇ ਫਲਾਂ ਦਾ ਪ੍ਰਸਾਦ ਰੱਖਿਆ ਹੋਇਆ ਹੈ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">ਪੁਣੇ ਦਾ ਮਾਣ</span>
+    <img src="RDT_20260918_2003168713579542178375404.jpg" alt="ਸ਼੍ਰੀਮੰਤ ਦਗੜੂਸ਼ੇਠ ਹਲਵਾਈ ਗਣਪਤੀ">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>ਸ਼੍ਰੀਮੰਤ ਦਗੜੂਸ਼ੇਠ ਹਲਵਾਈ ਗਣਪਤੀ</h2>
+    <div class="subhead">ਵਿਸ਼ਵ ਪ੍ਰਸਿੱਧ ਪਵਿੱਤਰ ਧਾਮ • ਸਥਾਪਨਾ ੧੮੯੩</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ਹਲਵਾਈ ਦਗੜੂਸ਼ੇਠ ਗਾਡਵੇ ਅਤੇ ਉਨ੍ਹਾਂ ਦੀ ਪਤਨੀ ਲਕਸ਼ਮੀਬਾਈ ਨੇ ਪਲੇਗ ਵਿੱਚ ਆਪਣੇ ਇਕਲੌਤੇ ਪੁੱਤਰ ਨੂੰ ਗੁਆਉਣ ਤੋਂ ਬਾਅਦ ਗੁਰੂ ਮਾਧਵਨਾਥ ਮਹਾਰਾਜ ਦੀ ਪ੍ਰੇਰਨਾ ਨਾਲ ੧੮੯੩ ਵਿੱਚ ਇਸ ਮੰਦਰ ਦੀ ਸਥਾਪਨਾ ਕੀਤੀ। ਲੋਕਮਾਨਿਆ ਤਿਲਕ ਖ਼ੁਦ ਇਸ ਦੇ ਗਵਾਹ ਸਨ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ਭਾਰਤ ਦੇ ਸਭ ਤੋਂ ਅਮੀਰ ਚੈਰੀਟੇਬਲ ਟਰੱਸਟਾਂ ਵਿੱਚੋਂ ਇੱਕ, ਜੋ ਹਸਪਤਾਲ, ਸਕੂਲ ਅਤੇ ਲੋਕ ਸੇਵਾ ਕਰਦਾ ਹੈ। ਉਤਸਵ ਦੌਰਾਨ ਪ੍ਰਾਚੀਨ ਭਾਰਤੀ ਮੰਦਰਾਂ ਦੇ ਵਿਸ਼ਾਲ ਆਰਜ਼ੀ ਪ੍ਰਤੀਰੂਪ (ਸੈੱਟ) ਬਣਾਉਣ ਲਈ ਮਸ਼ਹੂਰ ਹੈ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ੪੦ ਕਿਲੋ ਤੋਂ ਵੱਧ ਸ਼ੁੱਧ ਸੋਨਾ: ਮੂਰਤੀ ਨੂੰ ੪੦ ਕਿਲੋ ਤੋਂ ਵੱਧ ਸ਼ੁੱਧ ਸੋਨੇ ਦੇ ਗਹਿਣਿਆਂ ਅਤੇ ਹੀਰਿਆਂ ਨਾਲ ਸਜਾਇਆ ਜਾਂਦਾ ਹੈ। ਰਿਸ਼ੀ ਪੰਚਮੀ ਦੇ ਦਿਨ ਸਵੇਰੇ ੩੦,੦੦੦ ਤੋਂ ਵੱਧ ਔਰਤਾਂ ਇਕੱਠੀਆਂ ਹੋ ਕੇ ਅਥਰਵਸ਼ੀਰਸ਼ ਦਾ ਜਾਪ ਕਰਦੀਆਂ ਹਨ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਸੋਨੇ ਨਾਲ ਸਜੀ ਵਿਸ਼ਵ ਪ੍ਰਸਿੱਧ ਮੂਰਤੀ, ਜੋ ਮੋਰ ਦੀ ਨੱਕਾਸ਼ੀ ਵਾਲੀ ਗੂੜ੍ਹੇ ਪੱਥਰ ਦੀ ਮਹਿਰਾਬ ਹੇਠਾਂ ਬਿਰਾਜਮਾਨ ਹੈ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">ਪੁਣੇ ਦਾ ਮਾਣ</span>
+    <img src="RDT_20260918_2002404229573933674161513.jpg" alt="ਅਖਿਲ ਮੰਡਈ ਮੰਡਲ (ਸ਼ਾਰਦਾ ਗਜਾਨਨ)">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>ਅਖਿਲ ਮੰਡਈ ਮੰਡਲ (ਸ਼ਾਰਦਾ ਗਜਾਨਨ)</h2>
+    <div class="subhead">ਦੇਵੀ ਸ਼ਾਰਦਾ ਅਤੇ ਗਜਾਨਨ • ਸਥਾਪਨਾ ੧੮੯੪</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ਮਹਾਤਮਾ ਫੂਲੇ ਮੰਡਈ ਦੇ ਸਬਜ਼ੀ ਅਤੇ ਫਲ ਵਿਕਰੇਤਾਵਾਂ ਦੁਆਰਾ ੧੮੯੪ ਵਿੱਚ ਸਥਾਪਿਤ, ਜੋ ਸ਼ਹਿਰ ਦੇ ਕਿਰਤੀ ਵਰਗ ਦਾ ਪ੍ਰਤੀਕ ਹੈ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ਵਿਸਰਜਨ ਜਲੂਸ ਵਿੱਚ ਇਹ ਮੂਰਤੀ ਫੁੱਲਾਂ ਨਾਲ ਸਜੇ ਇੱਕ ਸ਼ਾਨਦਾਰ 'ਝੂਲੇ' 'ਤੇ ਬਿਰਾਜਮਾਨ ਹੋ ਕੇ ਨਿਕਲਦੀ ਹੈ, ਜੋ ਹੌਲੀ-ਹੌਲੀ ਝੂਲਦਾ ਰਹਿੰਦਾ ਹੈ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ਦੁਰਲੱਭ ਸੰਯੁਕਤ ਮੂਰਤੀ: ਪੂਰੇ ਭਾਰਤ ਵਿੱਚ ਇਹ ਇਕਲੌਤਾ ਅਜਿਹਾ ਪ੍ਰਮੁੱਖ ਗਣਪਤੀ ਮੰਡਲ ਹੈ ਜਿੱਥੇ ਭਗਵਾਨ ਗਣੇਸ਼ ਦੇ ਨਾਲ ਵਿੱਦਿਆ ਦੀ ਦੇਵੀ ਸ਼ਾਰਦਾ (ਸਰਸਵਤੀ) ਬਿਰਾਜਮਾਨ ਹਨ, ਜੋ ਬੁੱਧੀ ਅਤੇ ਗਿਆਨ ਦਾ ਸੁਮੇਲ ਦਰਸਾਉਂਦੀ ਹੈ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਚੌੜੀ ਫੋਟੋ ਜਿਸ ਵਿੱਚ ਭਗਵਾਨ ਗਣੇਸ਼ ਦੇ ਨਾਲ ਪੀਲੀ ਪੈਠਣੀ ਸਾੜ੍ਹੀ ਵਿੱਚ ਦੇਵੀ ਸ਼ਾਰਦਾ ਦੀ ਮੂਰਤੀ ਇਕੱਠੀ ਬਿਰਾਜਮਾਨ ਦਿਖਾਈ ਦਿੰਦੀ ਹੈ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">ਇਤਿਹਾਸਕ ਪਹਿਲਾ</span>
+    <img src="RDT_20260918_2002337133742980811714858.jpg" alt="ਸ਼੍ਰੀਮੰਤ ਭਾਊਸਾਹਿਬ ਰੰਗਾਰੀ ਗਣਪਤੀ">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>ਸ਼੍ਰੀਮੰਤ ਭਾਊਸਾਹਿਬ ਰੰਗਾਰੀ ਗਣਪਤੀ</h2>
+    <div class="subhead">ਭਾਰਤ ਦਾ ਪਹਿਲਾ ਜਨਤਕ ਗਣਪਤੀ • ਸਥਾਪਨਾ ੧੮੯੨</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ਆਯੁਰਵੈਦਿਕ ਵੈਦ ਅਤੇ ਕ੍ਰਾਂਤੀਕਾਰੀ ਭਾਊਸਾਹਿਬ ਲਕਸ਼ਮਣ ਜਾਵਲੇ (ਰੰਗਾਰੀ) ਦੁਆਰਾ ੧੮੯੨ ਵਿੱਚ ਸਥਾਪਿਤ—ਤਿਲਕ ਤੋਂ ਇੱਕ ਸਾਲ ਪਹਿਲਾਂ! ਰੰਗਾਰੀ ਨੇ ਅੰਗਰੇਜ਼ੀ ਹਕੂਮਤ ਵਿਰੁੱਧ ਹਥਿਆਰਬੰਦ ਕ੍ਰਾਂਤੀ ਦੀ ਗੁਪਤ ਯੋਜਨਾ ਬਣਾਉਣ ਲਈ ਇਸ ਉਤਸਵ ਨੂੰ ਮਾਧਿਅਮ ਬਣਾਇਆ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ਇੱਥੋਂ ਦੀ ਵਿਲੱਖਣ ਮੂਰਤੀ ਵਿੱਚ ਭਗਵਾਨ ਗਣੇਸ਼ ਤ੍ਰਿਸ਼ੂਲ ਨਾਲ ਇੱਕ ਰਾਖਸ਼ ਦਾ ਵਧ ਕਰਦੇ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ, ਜੋ ਅੰਗਰੇਜ਼ੀ ਜ਼ੁਲਮ ਨੂੰ ਖ਼ਤਮ ਕਰਨ ਦਾ ਪ੍ਰਤੀਕਾਤਮਕ ਸੱਦਾ ਸੀ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ੧੩੪ ਸਾਲ ਪੁਰਾਣੀ ਅਸਲ ਮੂਰਤੀ: ੧੮੯੨ ਵਿੱਚ ਕਾਗਜ਼ ਦੀ ਲੁਗਦੀ, ਲੱਕੜ ਅਤੇ ਕੁਦਰਤੀ ਰੰਗਾਂ ਨਾਲ ਬਣੀ ਮੂਰਤੀ ਦਾ ਕਦੇ ਵਿਸਰਜਨ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ; ਅੱਜ ਵੀ ਉਸੇ ਮੂਰਤੀ ਦੀ ਪੂਜਾ ਹੁੰਦੀ ਹੈ। ਰੰਗਾਰੀ ਦੇ ਵਾੜੇ ਵਿੱਚ ਹਥਿਆਰ ਲੁਕਾਉਣ ਲਈ ਗੁਪਤ ਤਹਿਖਾਨੇ ਸਨ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਤ੍ਰਿਸ਼ੂਲ ਨਾਲ ਨੀਲੇ ਰਾਖਸ਼ ਨੂੰ ਮਾਰਦੇ ਹੋਏ ਵੀਰ ਮੁਦਰਾ ਵਿੱਚ ਗਣਪਤੀ, ਪਿੱਛੇ ਗੁਲਾਬੀ ਮਹਿਰਾਬ ਅਤੇ 'Asia Book of Records' ਦਾ ਸਰਟੀਫਿਕੇਟ।</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="img-box">
+    <span class="badge legend">ਪ੍ਰਸਿੱਧ ਮੰਡਲ</span>
+    <img src="RDT_20260918_2003006388806393465905583.jpg" alt="ਪੁਣਿਆਚਾ ਰਾਜਾ (ਸਦਾਸ਼ਿਵ ਪੇਠ)">
+    <span class="zoom-hint">🔍 ਟੈਪ ਕਰੋ ਜ਼ੂਮ ਲਈ</span>
+  </div>
+  <div class="card-body">
+    <h2>ਪੁਣਿਆਚਾ ਰਾਜਾ (ਸਦਾਸ਼ਿਵ ਪੇਠ)</h2>
+    <div class="subhead">ਸਦਾਸ਼ਿਵ ਪੇਠ ਦਾ ਮਸ਼ਹੂਰ ਮੰਡਲ</div>
+    <div class="sec"><strong>ਇਤਿਹਾਸ ਅਤੇ ਮਹੱਤਵ:</strong> ਮਰਾਠੀ ਵਿੱਦਿਆ, ਕਲਾ ਅਤੇ ਸੱਭਿਆਚਾਰ ਦੇ ਕੇਂਦਰ ਸਦਾਸ਼ਿਵ ਪੇਠ ਦਾ ਇਹ ਇੱਕ ਬਹੁਤ ਹੀ ਹਰਮਨਪਿਆਰਾ ਮੰਡਲ ਹੈ।</div>
+    <div class="sec"><strong>ਵਿਸਰਜਨ ਪਰੰਪਰਾ:</strong> ਉਤਸਵ ਦੌਰਾਨ ਮਰਾਠਾ ਕਿਲ੍ਹਿਆਂ (ਰਾਏਗੜ੍ਹ, ਸਿੰਘਗੜ੍ਹ) ਅਤੇ ਪੇਸ਼ਵਾ ਦਰਬਾਰਾਂ ਦੀਆਂ ਸ਼ਾਨਦਾਰ ਝਾਕੀਆਂ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਹੈ।</div>
+    <div class="trivia"><strong>ਵਿਸ਼ੇਸ਼ ਰੌਚਕ ਤੱਥ:</strong> ਮੂਸ਼ਕ 'ਤੇ ਵੀਰ ਮੁਦਰਾ: ਆਮ ਮੂਰਤੀਆਂ ਵਾਂਗ ਚੌਂਕੜੀ ਮਾਰ ਕੇ ਬੈਠਣ ਦੀ ਬਜਾਏ, 'ਪੁਣਿਆਚਾ ਰਾਜਾ' ਆਪਣੇ ਵਾਹਨ ਮੂਸ਼ਕ (ਚੂਹੇ) 'ਤੇ ਸਵਾਰ ਇੱਕ ਬਹਾਦਰ ਯੋਧੇ ਦੀ ਮੁਦਰਾ ਵਿੱਚ ਬਿਰਾਜਮਾਨ ਹਨ।</div>
+    <div class="cue"><strong>ਫੋਟੋ ਪਛਾਣ:</strong> ਆਪਣੇ ਮੂਸ਼ਕ ਵਾਹਨ 'ਤੇ ਸਵਾਰ ਸੁਨਹਿਰੀ ਗਣਪਤੀ, ਉੱਪਰ ਸੁਨਹਿਰੀ ਅੱਖਰਾਂ ਵਿੱਚ 'पुण्याचा राजा' ਦਾ ਬੋਰਡ।</div>
+  </div>
+</div>
+
+<script src="addon.js"></script>
+</body>
+</html>
