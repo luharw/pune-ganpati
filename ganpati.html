@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Pune Ganeshotsav Heritage Guide</title>
+<style>
+  :root {
+    --primary: #7a0c23;
+    --gold: #c59616;
+    --gold-bg: #fdf8ec;
+    --bg: #f5f3ef;
+    --card: #ffffff;
+    --text: #221e1a;
+    --muted: #5c544d;
+    --border: #e2dacd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); padding: 12px; padding-bottom: 60px; line-height: 1.5; }
+  
+  header { background: linear-gradient(135deg, var(--primary), #480513); color: #fff; padding: 18px 14px; border-radius: 12px; text-align: center; border-bottom: 3px solid var(--gold); margin-bottom: 14px; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
+  header h1 { font-size: 1.3rem; color: #ffdf88; margin-bottom: 3px; }
+  header p { font-size: .82rem; color: #f3e8db; }
+  
+  .card { background: var(--card); border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 7px rgba(0,0,0,0.06); border: 1px solid var(--border); overflow: hidden; }
+  
+  .img-box { position: relative; height: 300px; background: #181513; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
+  .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .zoom-hint { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: .7rem; padding: 3px 8px; border-radius: 12px; pointer-events: none; }
+  
+  .badge { position: absolute; top: 10px; left: 10px; background: var(--gold); color: #1c1200; font-size: .72rem; font-weight: 700; padding: 4px 9px; border-radius: 14px; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.25); }
+  .badge.legend { background: #fff; color: #0d47a1; }
+  
+  .card-body { padding: 14px; }
+  h2 { font-size: 1.15rem; color: var(--primary); margin-bottom: 2px; }
+  .subhead { font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: 10px; }
+  
+  .sec { margin: 8px 0; font-size: .84rem; line-height: 1.45; }
+  .sec strong { color: var(--primary); }
+  
+  .trivia { background: #f0f7ff; border-left: 3px solid #1976d2; padding: 8px 10px; font-size: .8rem; border-radius: 0 6px 6px 0; margin-top: 8px; color: #0d47a1; line-height: 1.4; }
+  .trivia strong { color: #0a3880; }
+  
+  .cue { background: var(--gold-bg); border-left: 3px solid var(--gold); padding: 8px 10px; font-size: .8rem; border-radius: 0 6px 6px 0; margin-top: 8px; color: #523d06; line-height: 1.4; }
+  .cue strong { color: #2e2202; }
+  
+  /* Zoom Lightbox */
+  #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; touch-action: none; overflow: hidden; }
+  #modal-bar { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); z-index: 10001; }
+  #modal-title { color: #ffdf88; font-size: .85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
+  .ctrl-btns { display: flex; gap: 6px; }
+  .ctrl-btn { background: #2c2c2c; color: #fff; border: 1px solid #555; border-radius: 18px; padding: 6px 12px; font-size: .8rem; font-weight: 700; cursor: pointer; }
+  .ctrl-btn.close-btn { background: #a00; border-color: #c00; }
+  
+  #viewport { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  #modal-img { max-width: 100%; max-height: 100%; object-fit: contain; transform-origin: center center; transition: transform 0.12s ease-out; user-select: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Pune Ganeshotsav Heritage Guide</h1>
+  <p>The 5 Manache Ganpatis & Historic Mandals • Tap photo to zoom</p>
+</header>
+
+<div id="list"></div>
+
+<!-- Zoom Modal -->
+<div id="modal">
+  <div id="modal-bar">
+    <span id="modal-title"></span>
+    <div class="ctrl-btns">
+      <button class="ctrl-btn" onclick="applyZoom(0.4)">＋</button>
+      <button class="ctrl-btn" onclick="applyZoom(-0.4)">−</button>
+      <button class="ctrl-btn" onclick="resetZoom()">⟲</button>
+      <button class="ctrl-btn close-btn" onclick="closeModal()">✕</button>
+    </div>
+  </div>
+  <div id="viewport">
+    <img id="modal-img" src="" alt="Enlarged view">
+  </div>
+</div>
+
+<script>
+const data = [
+  {
+    m: "Maan 1 (मानाचा १ ला)",
+    bClass: "",
+    t: "1. Shri Kasba Ganpati",
+    e: "Gramdaivat of Pune • Established 1630 CE",
+    f: "RDT_20260918_2002262026210432573628454.jpg",
+    hist: "Consecrated by Rajmata Jijabai and young Chhatrapati Shivaji Maharaj when Pune was rebuilt after being destroyed by Bijapur forces. An ancient, self-manifested (swayambhu) stone idol was found near Vinayak Thakar's home. Shivaji Maharaj plowed the nearby soil with a ceremonial golden plow and prayed here before embarking on his campaigns for Swarajya.",
+    proc: "Holds the supreme 1st place of honor and officially leads Pune's immersion procession on Anant Chaturdashi in a silver palanquin (Chaandi cha Rath). City police hold back all general mandals until Kasba Ganpati reaches the immersion ghat.",
+    trivia: "Strict No-Gulal Rule: No orange gulal powder is thrown onto this idol or its palanquin to prevent chemical erosion of the antique silver. The farewell aarti before visarjan is traditionally conducted exclusively by women devotees.",
+    cue: "Illuminated top signboard reading 'मानाचा पहिला ॥ श्री कसबा गणपती ॥' with twin sculpted silver lions flanking the silver throne."
+  },
+  {
+    m: "Maan 2 (मानाचा २ रा)",
+    bClass: "",
+    t: "2. Shri Tambdi Jogeshwari Ganpati",
+    e: "Goddess Jogeshwari Shrine Deity • Established 1893 CE",
+    f: "RDT_20260918_2003067532741119726472104.jpg",
+    hist: "Dedicated to Goddess Jogeshwari, the patron goddess (Gramdevi) of Pune. The temple dates back to the 15th century, and the public festival was started in its courtyard in 1893. The Peshwas sought blessings here before undertaking military expeditions.",
+    proc: "Marches 2nd along Laxmi Road on the legendary 'Sheshrath'—a grand chariot crested with the multi-headed serpent Sheshnaag.",
+    trivia: "Generational Clay Sculpting: Hand-sculpted every year from natural river clay (shadu maati) by the Dhumal artisan family in an unchanging posture: seated in Abhayamudra while holding tridents (trishuls). Like Kasba Ganpati, it strictly prohibits gulal spraying.",
+    cue: "Idol seated inside a dark carved antique silver temple arch (makhar), holding tridents and draped in yellow and purple silk pitambar."
+  },
+  {
+    m: "Maan 3 (मानाचा ३ रा)",
+    bClass: "",
+    t: "3. Shri Guruji Talim Ganpati",
+    e: "Symbol of Harmony & Valour • Established 1887 CE",
+    f: "RDT_20260918_2002461841165002373983641.jpg",
+    hist: "Founded six years before Tilak popularized public Ganeshotsav by wrestling masters (ustads) Bhiku Shinde and Nana Khasgiwale alongside their Muslim wrestling peers from a traditional gymnasium (talim).",
+    proc: "Marches 3rd in the Laxmi Road procession, acclaimed for massive flower-decked display floats (Pushparath).",
+    trivia: "Pioneer of Interfaith Brotherhood: Established and financed jointly by Hindu and Muslim wrestlers, with Muslim families historically managing festival logistics. It was also the first mandal in Pune to introduce grand artistic decorative floats.",
+    cue: "Radiant, fully golden sculpted sanctum wall with a circular halo; pedestal explicitly inscribed with 'गुरुजी तालीमचा गणपती'."
+  },
+  {
+    m: "Maan 4 (मानाचा ४ था)",
+    bClass: "",
+    t: "4. Shri Tulshibaug Ganpati",
+    e: "The Grand Clay Idol of Pune • Established 1901 CE",
+    f: "RDT_20260918_200253415866741747137374.jpg",
+    hist: "Established by merchants, brass-smiths, and traders of Pune's busiest retail market (Tulshibaug) in 1901. Pioneered the tradition of giant, life-sized clay murtis in the city.",
+    proc: "4th in the procession hierarchy. Carried on a heavy-duty mechanized chariot due to the immense weight of the idol and its jewelry.",
+    trivia: "Over 80 kg of Pure Silver: The towering ~14-foot clay idol is dressed in over 80 kg of genuine silver ornaments, armor, and weapons (axe and trident). The Khatavkar family has sculpted this massive murti annually for over a century using specialized bamboo/straw armatures.",
+    cue: "Majestic ~14-foot clay murti holding an axe and trident, wearing an ornate tiered silver crown with devotees snapping photos below."
+  },
+  {
+    m: "Maan 5 (मानाचा ५ वा)",
+    bClass: "",
+    t: "5. Shri Kesariwada Ganpati",
+    e: "Cradle of India's Freedom Awakening • Established 1894 CE",
+    f: "RDT_20260918_2001334111954814690421123.jpg",
+    hist: "Started by Lokmanya Bal Gangadhar Tilak at Vinchurkar Wada and shifted in 1905 to Kesariwada, headquarters of his anti-colonial newspapers 'Kesari' and 'Mahratta'. Tilak used this festival platform to bypass British anti-assembly laws and mobilize citizens for Swarajya.",
+    proc: "Completes and closes the prestigious 5 Manache Ganpatis. General city mandals are only permitted to enter the main procession after Kesariwada passes.",
+    trivia: "Authentic Wooden Palkhi: Shuns trucks and tractors; the modest eco-friendly clay idol is carried on the shoulders of volunteers in an antique wooden palanquin. Freedom icons like Swami Vivekananda, Mahatma Gandhi, and Netaji Subhash Chandra Bose delivered speeches here.",
+    cue: "Side profile of traditional clay murti seated on a royal blue velvet chowrang, with fresh coconuts and fruit offerings arranged in front."
+  },
+  {
+    m: "City Legend",
+    bClass: "legend",
+    t: "Shrimant Dagdusheth Halwai Ganpati",
+    e: "World-Renowned Divine Splendour • Established 1893 CE",
+    f: "RDT_20260918_2003168713579542178375404.jpg",
+    hist: "Founded by Lingayat sweetmaker Dagdusheth Gadve and his wife Lakshmibai after losing their only son to the plague. On their spiritual guru's advice, they channeled their grief and wealth into establishing this shrine. Tilak was a close associate and attended the installation.",
+    proc: "Supported by one of India's richest charitable trusts funding hospitals, schools, and disaster relief. Famous for commissioning monumental temporary replicas of ancient Indian temple architecture.",
+    trivia: "40+ kg of Solid Gold: The idol is adorned with over 40 kilograms of pure gold, studded with diamonds and gems. On Rishi Panchami, 30,000+ women gather at dawn in traditional attire to chant the Atharvashirsha in unison.",
+    cue: "World-famous gold-covered idol seated beneath a dark carved stone archway decorated with sculpted peacock motifs."
+  },
+  {
+    m: "City Legend",
+    bClass: "legend",
+    t: "Akhil Mandai Mandal (Sharada Gajanan)",
+    e: "Goddess Sharada & Ganesha • Established 1894 CE",
+    f: "RDT_20260918_2002404229573933674161513.jpg",
+    hist: "Founded by the vegetable and fruit vendors of Pune's historic municipal market (Mahatma Phule Mandai), honoring the city's working-class heritage.",
+    proc: "Visarjan takes place on a grand ceremonial swing (Jhula) covered in flowers that gently sways throughout the procession.",
+    trivia: "Rare Dual Murti: The only prominent Ganesha mandal in India featuring Lord Ganesha seated alongside Goddess Sharada (Saraswati), the goddess of wisdom and arts, symbolizing the fusion of intellect and learning.",
+    cue: "Wide landscape orientation showing Lord Ganesha seated side-by-side with Goddess Sharada draped in a bright yellow Paithani saree."
+  },
+  {
+    m: "Historic 1st",
+    bClass: "legend",
+    t: "Shrimant Bhausaheb Rangari Ganpati",
+    e: "India's First Public Ganeshotsav Idol • Established 1892 CE",
+    f: "RDT_20260918_2002337133742980811714858.jpg",
+    hist: "Installed in 1892 by Ayurvedic physician and undercover revolutionary Bhausaheb Laxman Javale (Rangari)—one year before Tilak publicized the festival. Rangari used religious gatherings as cover to organize underground armed resistance against British rule.",
+    proc: "The unique warrior-pose idol portrays Ganesha subduing a winged demon (asura) with a trishul, serving as an allegorical call for Indians to overthrow colonial oppression.",
+    trivia: "134-Year-Old Original Murti: The original 1892 idol—crafted from paper-pulp, wood, and vegetable resins—is never immersed and has been worshipped continuously for over 130 years. Rangari's historic wada contained secret chambers for storing revolutionary weapons.",
+    cue: "Warrior-pose Ganesha slaying a blue demon with a trident, inside a pink scalloped archway with the Asia Book of Records certificate."
+  },
+  {
+    m: "Famous Mandal",
+    bClass: "legend",
+    t: "Punyacha Raja (Sadashiv Peth)",
+    e: "Iconic Mandal of Sadashiv Peth",
+    f: "RDT_20260918_2003006388806393465905583.jpg",
+    hist: "A cornerstone devotional mandal of Sadashiv Peth—a neighborhood long revered as the heart of traditional Marathi scholarship, performing arts, and heritage.",
+    proc: "Renowned for elaborate themed stage settings replicating Maratha hill forts (Raigad, Sinhagad) and royal Peshwa darbars.",
+    trivia: "Heroic Equestrian Stance: Rather than standard seated postures, Punyacha Raja is famously sculpted in a warrior pose seated atop his celestial vehicle, the mouse (Mushak).",
+    cue: "Golden Ganesha in an active warrior pose mounted on his mouse vehicle beneath an illuminated golden 'पुण्याचा राजा' sign."
+  }
+];
+
+const list = document.getElementById("list");
+
+data.forEach((item, i) => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <div class="img-box" onclick="openModal('${item.f}', '${item.t}')">
+      <span class="badge ${item.bClass}">${item.m}</span>
+      <img src="${item.f}" alt="${item.t}" loading="lazy">
+      <span class="zoom-hint">🔍 Tap to Zoom</span>
+    </div>
+    <div class="card-body">
+      <h2>${item.t}</h2>
+      <div class="subhead">${item.e}</div>
+      <div class="sec"><strong>Historical Insight:</strong> ${item.hist}</div>
+      <div class="sec"><strong>Visarjan Protocol:</strong> ${item.proc}</div>
+      <div class="trivia"><strong>Lesser-Known Trivia:</strong> ${item.trivia}</div>
+      <div class="cue"><strong>Visual Cue:</strong> ${item.cue}</div>
+    </div>
+  `;
+  list.appendChild(card);
+});
+
+/* Fullscreen Zoom & Pan Engine */
+let currentScale = 1;
+let posX = 0, posY = 0;
+let isDragging = false;
+let startX = 0, startY = 0;
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const modalTitle = document.getElementById("modal-title");
+
+function openModal(src, title) {
+  modalImg.src = src;
+  modalTitle.innerText = title;
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden";
+  resetZoom();
+}
+
+function closeModal() {
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+function updateTransform() {
+  modalImg.style.transform = `translate(${posX}px, ${posY}px) scale(${currentScale})`;
+}
+
+function applyZoom(delta) {
+  currentScale = Math.min(Math.max(1, currentScale + delta), 4.5);
+  if (currentScale === 1) { posX = 0; posY = 0; }
+  updateTransform();
+}
+
+function resetZoom() {
+  currentScale = 1;
+  posX = 0;
+  posY = 0;
+  updateTransform();
+}
+
+/* Double-tap to Toggle Zoom */
+let lastTap = 0;
+modalImg.addEventListener("touchend", function(e) {
+  const now = new Date().getTime();
+  if (now - lastTap < 300 && now - lastTap > 0) {
+    if (currentScale > 1.2) resetZoom();
+    else { currentScale = 2.4; updateTransform(); }
+    e.preventDefault();
+  }
+  lastTap = now;
+});
+
+/* Touch Drag & Pan */
+modalImg.addEventListener("touchstart", function(e) {
+  if (currentScale > 1 && e.touches.length === 1) {
+    isDragging = true;
+    startX = e.touches[0].clientX - posX;
+    startY = e.touches[0].clientY - posY;
+  }
+});
+
+modalImg.addEventListener("touchmove", function(e) {
+  if (isDragging && currentScale > 1 && e.touches.length === 1) {
+    posX = e.touches[0].clientX - startX;
+    posY = e.touches[0].clientY - startY;
+    updateTransform();
+    e.preventDefault();
+  }
+});
+
+modalImg.addEventListener("touchend", function() {
+  isDragging = false;
+});
+</script>
+</body>
+</html>
+
