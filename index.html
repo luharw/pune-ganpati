@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Pune Ganeshotsav Heritage Guide</title>
+
+<!-- Google Fonts Preload -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --primary: #7a0c23;
@@ -16,12 +22,42 @@
     --border: #e2dacd;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); padding: 12px; padding-bottom: 60px; line-height: 1.5; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); padding: 12px; padding-bottom: 30px; line-height: 1.5; transition: font-family 0.15s ease; }
   
-  header { background: linear-gradient(135deg, var(--primary), #480513); color: #fff; padding: 18px 14px; border-radius: 12px; text-align: center; border-bottom: 3px solid var(--gold); margin-bottom: 14px; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
+  header { background: linear-gradient(135deg, var(--primary), #480513); color: #fff; padding: 18px 14px; border-radius: 12px; text-align: center; border-bottom: 3px solid var(--gold); margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
   header h1 { font-size: 1.3rem; color: #ffdf88; margin-bottom: 3px; }
   header p { font-size: .82rem; color: #f3e8db; }
   
+  /* Top Font Toolbar */
+  .font-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    padding: 7px 16px;
+    margin: 0 auto 16px auto;
+    width: fit-content;
+    max-width: 100%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .font-bar label {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .font-bar select {
+    border: none;
+    background: transparent;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--text);
+    outline: none;
+    cursor: pointer;
+  }
+
   .card { background: var(--card); border-radius: 12px; margin: 16px 0; box-shadow: 0 2px 7px rgba(0,0,0,0.06); border: 1px solid var(--border); overflow: hidden; }
   
   .img-box { position: relative; height: 300px; background: #181513; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
@@ -43,8 +79,8 @@
   
   .cue { background: var(--gold-bg); border-left: 3px solid var(--gold); padding: 8px 10px; font-size: .8rem; border-radius: 0 6px 6px 0; margin-top: 8px; color: #523d06; line-height: 1.4; }
   .cue strong { color: #2e2202; }
-  
-  /* Zoom Lightbox */
+
+  /* Zoom Modal */
   #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; touch-action: none; overflow: hidden; }
   #modal-bar { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); z-index: 10001; }
   #modal-title { color: #ffdf88; font-size: .85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
@@ -62,6 +98,18 @@
   <h1>Pune Ganeshotsav Heritage Guide</h1>
   <p>The 5 Manache Ganpatis & Historic Mandals • Tap photo to zoom</p>
 </header>
+
+<!-- Top Font Selector -->
+<div class="font-bar">
+  <label for="font-select">Aa Font:</label>
+  <select id="font-select" onchange="changeFont(this.value)">
+    <option value="system-ui, -apple-system, sans-serif">System Default</option>
+    <option value="'Poppins', sans-serif">Poppins (Modern Clean)</option>
+    <option value="'Merriweather', serif">Merriweather (Classic Editorial)</option>
+    <option value="'Playfair Display', serif">Playfair (Royal Serif)</option>
+    <option value="'Montserrat', sans-serif">Montserrat (Geometric Sans)</option>
+  </select>
+</div>
 
 <div id="list"></div>
 
@@ -206,6 +254,20 @@ data.forEach((item, i) => {
   `;
   list.appendChild(card);
 });
+
+/* Font Switching Engine */
+function changeFont(fontFamily) {
+  document.body.style.fontFamily = fontFamily;
+  try {
+    localStorage.setItem("pune_ganpati_font", fontFamily);
+  } catch(e) {}
+}
+
+const savedFont = localStorage.getItem("pune_ganpati_font");
+if (savedFont) {
+  document.body.style.fontFamily = savedFont;
+  document.getElementById("font-select").value = savedFont;
+}
 
 /* Fullscreen Zoom & Pan Engine */
 let currentScale = 1;
